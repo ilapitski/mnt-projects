@@ -1,0 +1,59 @@
+<project name="ant-task-iLapitski" default="dist" basedir=".">
+
+  <target name="init">
+
+  <property name="src" location="src"/>
+  <property name="build" location="build"/>
+  <property name="dist"  location="dist"/>
+  <property name="lib"  location="lib"/>
+  <property name="test"  location="test"/>
+  <property name="unittest"  location="unittest"/>
+
+    <echo>processing init..</echo>
+     <tstamp>
+       <format property="touch.time" pattern="MM-dd-yyyy-HH:mm:ss"/>
+     </tstamp>
+    <echo>the current date is ${touch.time}</echo>
+  </target>
+
+  <target name="clean" depends="init">
+     <echo>processing clean..</echo>
+      <delete dir="${build}"/>
+      <delete dir="${dist}"/>
+      <delete dir="${unittest}"/>
+  </target>
+  
+  <target name="compile" depends="clean">
+    <echo>processing compile..</echo>
+    <mkdir dir="${build}"/>
+    <javac includeantruntime="false" 
+		srcdir="${src}" 
+		destdir="${build}"
+		classpath="lib/commons-collections-3.2.1.jar"/>
+   </target>
+
+  <target name="test" depends="compile">
+    <echo>processing test..</echo>
+	<mkdir dir="${unittest}" />
+ 		<javac includeantruntime="no" 
+		srcdir="${test}" 
+		destdir="${unittest}" 
+		classpath="${lib}/junit-4.11.jar"/>
+		<junit>
+			<test name="${unittest}/com/test/UnitTest"/>
+			<classpath path="lib/junit-4.11.jar"/>
+		</junit>
+  </target>
+
+  <target name="jar" depends="test" >
+  <echo>processing dist..</echo>
+    <mkdir dir="${dist}/lib"/>
+    <jar jarfile="${dist}/lib/ivlap.jar" basedir="${build}"/>
+  </target>
+
+  <target name="dist" depends="jar">
+    <echo>processing dist..</echo>
+	<tar basedir="." destfile="${build}/${touch.time}-ilap.tar" includes="config/* dist/lib/ivlap.jar lib/*"/>
+  </target>
+
+</project>
