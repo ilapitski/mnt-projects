@@ -53,7 +53,7 @@
 
   <target name="dist" depends="jar">
     <echo>processing dist..</echo>
-	<tar basedir="." destfile="${build}/${touch.time}-ilap.tar" includes="config/* dist/lib/ivlap.jar lib/*"/>
+	<tar basedir="." destfile="${build}/${touch.time}-ivlap.tar" includes="config/* dist/lib/ivlap.jar lib/*"/>
   </target>
 
 </project>
