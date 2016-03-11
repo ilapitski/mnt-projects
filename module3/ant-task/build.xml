@@ -39,7 +39,7 @@
 		srcdir="${test}" 
 		destdir="${unittest}" 
 		classpath="${lib}/junit-4.11.jar"/>
-		<junit>
+		<junit printsummary="yes" haltonfailure="no">
 			<test name="${unittest}/com/test/UnitTest"/>
 			<classpath path="lib/junit-4.11.jar"/>
 		</junit>
