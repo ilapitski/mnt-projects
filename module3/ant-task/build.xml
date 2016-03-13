@@ -46,7 +46,7 @@
   </target>
 
   <target name="jar" depends="test" >
-  <echo>processing dist..</echo>
+  <echo>processing jar..</echo>
     <mkdir dir="${dist}/lib"/>
     <jar jarfile="${dist}/lib/ivlap.jar" basedir="${build}"/>
   </target>
