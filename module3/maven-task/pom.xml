@@ -7,7 +7,7 @@
     <artifactId>ci-training</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>maven-task-il</name>
+    <name>maven-task</name>
 
  <properties>
    <timestamp>${maven.build.timestamp}</timestamp>
@@ -15,16 +15,33 @@
  </properties>
 
  <build>
+   <finalName>iLapitski-${project.artifactId}-${maven.build.timestamp}</finalName>
+   <defaultGoal>package</defaultGoal>
      <plugins>
        	 <plugin>
          	 <groupId>org.apache.maven.plugins</groupId>
            	 <artifactId>maven-antrun-plugin</artifactId>
-            	<version>1.2</version>
+            	<version>1.8</version>
             	<inherited>false</inherited>
          </plugin>
+	<plugin>
+  		<groupId>org.apache.maven.plugins</groupId>
+		  <artifactId>maven-pdf-plugin</artifactId>
+		  <executions>
+		    <execution>
+		   	   <id>pdf</id>
+			      <phase>site</phase>
+			      <goals>
+			           <goal>pdf</goal>
+			      </goals>
+			      <configuration>
+				        <outputDirectory>${project.reporting.outputDirectory}</outputDirectory>
+				        <includeReports>false</includeReports>
+			      </configuration>
+		    </execution>
+		  </executions>
+	</plugin>
      </plugins>
-   <finalName>iLapitski-${maven.build.timestamp}</finalName>
-   <defaultGoal>package</defaultGoal>
  </build>
 
  <dependencies>
