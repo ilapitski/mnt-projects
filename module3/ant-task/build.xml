@@ -47,13 +47,13 @@
 
   <target name="jar" depends="test" >
   <echo>processing jar..</echo>
-    <mkdir dir="${dist}/lib"/>
-    <jar jarfile="${dist}/lib/ivlap.jar" basedir="${build}"/>
+    <mkdir dir="${dist}"/>
+    <jar jarfile="${dist}/ivlap.jar" basedir="${build}"/>
   </target>
 
   <target name="dist" depends="jar">
     <echo>processing dist..</echo>
-	<tar basedir="." destfile="${build}/${touch.time}-ivlap.tar" includes="config/* dist/lib/ivlap.jar lib/*"/>
+	<tar basedir="." destfile="${build}/${touch.time}-ivlap.tar" includes="config/* dist/ivlap.jar lib/*"/>
   </target>
 
 </project>
