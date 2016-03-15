@@ -35,25 +35,34 @@
   <target name="test" depends="compile">
     <echo>processing test..</echo>
 	<mkdir dir="${unittest}" />
- 		<javac includeantruntime="no" 
+		<javac includeantruntime="no" 
 		srcdir="${test}" 
-		destdir="${unittest}" 
-		classpath="${lib}/junit-4.11.jar"/>
-		<junit printsummary="yes" haltonfailure="no">
-			<test name="${unittest}/com/test/UnitTest"/>
+		destdir="${unittest}">
 			<classpath path="lib/junit-4.11.jar"/>
+			<classpath path="lib/hamcrest-core-1.3.jar"/>
+		</javac>
+		<junit printsummary="yes" haltonfailure="no" haltonerror="false">
+			<classpath>
+		            <pathelement location="lib/"/>
+		            <pathelement location="unittest/"/>
+		            <pathelement path="lib/junit-4.11.jar"/>
+		            <pathelement path="lib/hamcrest-core-1.3.jar"/>
+		        </classpath>
+			<test name="com.test.UnitTest" outfile="unittest_result"/>
+			<formatter type="xml"/>
+			<!--<classpath path="lib/junit-4.11.jar"/>-->
 		</junit>
   </target>
 
   <target name="jar" depends="test" >
   <echo>processing jar..</echo>
-    <mkdir dir="${dist}"/>
-    <jar jarfile="${dist}/ivlap.jar" basedir="${build}"/>
+    <mkdir dir="${dist}/lib"/>
+    <jar jarfile="${dist}/lib/ivlap.jar" basedir="${build}"/>
   </target>
 
   <target name="dist" depends="jar">
     <echo>processing dist..</echo>
-	<tar basedir="." destfile="${build}/${touch.time}-ivlap.tar" includes="config/* dist/ivlap.jar lib/*"/>
+	<tar basedir="." destfile="${build}/${touch.time}-ivlap.tar" includes="config/* dist/lib/ivlap.jar lib/*"/>
   </target>
 
 </project>
