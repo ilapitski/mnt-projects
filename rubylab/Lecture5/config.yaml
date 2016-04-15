@@ -1,0 +1,11 @@
+---
+:output_log: out.log
+:error_log: err.log
+:debug: true
+:commands:
+    :help: type 'command_name --help' to see description
+    :uptime: will give you OS uptime
+    :date: prints today's date
+    :echo: echo you args
+    :ping: to ping everything
+

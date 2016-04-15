@@ -1,0 +1,8 @@
+{
+  "common":
+          {
+            "output": "json",
+            "interval": "5",
+            "level": "DEBUG"
+          }
+}

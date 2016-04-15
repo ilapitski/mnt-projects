@@ -1,0 +1,42 @@
+ > Answer:
+ > Nil class caught..
+ > Command unknown, available commands:
+
+              > HelpCommand class caught.. 
+ > Answer:
+              > HelpCommand class caught.. 
+ > Answer:
+              > HelpCommand class caught.. 
+ > Answer:
+ > UpTimeCommand class caught.. 
+ > Answer:
+ > UpTimeCommand class caught.. 
+ > Answer:
+2016-04-14 17:46:06 +0300 - Execution stopped 
+2016-04-14 17:46:39 +0300 - Execution stopped 
+ > EchoCommand class caught.. 
+ > Answer:
+ > EchoCommand class caught.. 
+ > Answer:
+ > EchoCommand class caught.. 
+ > Answer:
+ > EchoCommand class caught.. 
+ > Answer:
+ > EchoCommand class caught.. 
+ > Answer:
+ > EchoCommand class caught.. 
+ > Answer:
+ > PingCommand class caught.. 
+ > Answer:
+ > PingCommand class caught.. 
+ > Answer:
+2016-04-14 17:50:35 +0300 - Execution stopped 
+ > HelpCommand class caught..
+ > HelpCommand class caught..
+ > UpTimeCommand class caught..
+ > PingCommand class caught..
+ > EchoCommand class caught..
+ > PingCommand class caught..
+ > PingCommand class caught..
+ > DateCommand class caught..
+ > DateCommand class caught..

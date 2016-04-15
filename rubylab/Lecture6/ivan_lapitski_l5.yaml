@@ -1,0 +1,10 @@
+---
+:output_log: ivan_lapitski_l5.log
+:error_log: script_errors.log
+:debug: true
+:commands:
+  :help: type 'command_name --help' to see description
+  :uptime: will give you OS uptime
+  :date: prints today's date
+  :echo: echo you args
+  :ping: to ping everything
