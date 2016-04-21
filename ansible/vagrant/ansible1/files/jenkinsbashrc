@@ -1,0 +1,13 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific aliases and functions
+export JAVA_HOME=/opt/jdk1.7.0_79/
+export M2_HOME=/opt/apache-maven-3.3.9
+export M2=$M2_HOME/bin
+export MAVEN_OPTS="-Xms256m -Xmx512m"
+export PATH=$M2:$PATH

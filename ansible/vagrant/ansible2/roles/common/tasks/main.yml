@@ -1,0 +1,23 @@
+---
+# tasks file for common
+- debug: msg="Will install and configure common web envinronment"
+
+- name: Setup working directory
+  file: path=/tmp/install state=directory
+
+- name: Nginx Repo
+  copy: src=NGINX.repo dest=/etc/yum.repos.d/NGINX.repo
+
+- name: Nginx install
+  yum: name=nginx state=latest
+
+- name: Setup nginx virtual hosts
+  template: src=virtual.conf dest=/etc/nginx/conf.d/
+  notify: restart nginx
+
+- name: Edit nginx conf
+  replace: dest=/etc/nginx/nginx.conf regexp='\*.conf' replace='virtual.conf' backup=yes
+
+- name: Start nginx
+  service: name=nginx state=started enabled=yes
+  

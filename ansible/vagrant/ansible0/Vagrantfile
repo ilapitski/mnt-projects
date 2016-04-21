@@ -1,0 +1,16 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  config.vm.provision "shell", path: "shell.sh"
+  config.vm.box = "sbeliakou/centos-6.7-x86_64"
+  config.vm.network "forwarded_port", guest: 8080, host: 8080
+  config.vm.hostname = "pet"
+  
+  
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "asiblewithshell"
+    vb.customize ["modifyvm", :id, "--memory", 2048]
+  end
+
+end

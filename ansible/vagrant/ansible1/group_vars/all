@@ -1,0 +1,8 @@
+---
+nginx_http_port: 8080
+jenkins_http_port: 8081
+jenkins_ajp_port: 8010
+jenkins_listen_address: 127.0.0.1
+jenkins_prefix: "--prefix=/jenkins"
+tomcat_http_port: 8082
+tomcat_ajp_port: 8009

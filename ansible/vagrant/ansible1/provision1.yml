@@ -1,0 +1,161 @@
+- name: Provision with Ansible
+  hosts: all
+  become: yes
+  
+  tasks:
+
+    - name: Setup working directory
+      file: path=/tmp/install state=directory
+
+    - name: Nginx Repo
+      copy: src=NGINX.repo dest=/etc/yum.repos.d/NGINX.repo
+
+    - name: Nginx install
+      yum: name=nginx state=latest
+
+    - name: Setup nginx virtual hosts
+      template: src=virtual.conf dest=/etc/nginx/conf.d/
+      notify: restart nginx
+
+    - name: Edit nginx conf
+      replace: dest=/etc/nginx/nginx.conf regexp='\*.conf' replace='virtual.conf' backup=yes
+
+    - name: Start nginx
+      service: name=nginx state=started enabled=yes
+
+    - name: Git install
+      yum: name=git-all state=latest
+
+    - name: Openjdk install
+      yum: name=java-1.7.0-openjdk state=latest
+
+    - name: Add group "jenkins"
+      group: name=jenkins
+
+    - name: User add jenkins
+      user: name=jenkins group=jenkins createhome=yes
+
+    - name: Set jenkins password
+      shell: echo jenkins:jenkins | chpasswd
+
+    - name: Sudoers jenkins
+      copy: src=sudojenkinscp dest=/etc/sudoers.d/jenkins
+
+    - name: Bashrc jenkins for maven
+      copy: src=jenkinsbashrc dest=/home/jenkins/.bashrc
+
+    - name: Setup jenkins repo
+      get_url: url=http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo dest=/etc/yum.repos.d/jenkins.repo
+
+    - name: Import jenkins key
+      rpm_key: key=https://jenkins-ci.org/redhat/jenkins-ci.org.key state=present validate_certs=no
+
+    - name: Jenkins install
+      yum: name=jenkins state=present
+
+    - name: Setup jenkins in sysconfig
+      template: src=jenkinssys dest=/etc/sysconfig/jenkins
+      notify: restart jenkins
+
+    - name: Download maven
+      get_url: url=http://ftp.byfly.by/pub/apache.org/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz dest=/tmp/install/apache-maven-3.3.9-bin.tar.gz
+
+    - name: Extract maven archive
+      unarchive: src=/tmp/install/apache-maven-3.3.9-bin.tar.gz dest=/opt/ copy=no creates=/opt/apache-maven-3.3.9/
+
+    - name: Chown apache-maven-3.3.9 for jenkins
+      file: path=/opt/apache-maven-3.3.9 owner=jenkins group=jenkins recurse=yes
+
+    - name: Download JDK 7
+      command: 'wget -P /tmp/install  --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-linux-x64.tar.gz" creates=/tmp/install/jdk-7u79-linux-x64.tar.gz'
+
+    - name: Extract JDK 7 archive
+      unarchive: src=/tmp/install/jdk-7u79-linux-x64.tar.gz dest=/opt/ copy=no creates=/opt/jdk-7u79/
+
+    - name: Start jenkins
+      service: name=jenkins state=started enabled=yes
+
+    - name: Download Tomcat
+      get_url: url=http://ftp.byfly.by/pub/apache.org/tomcat/tomcat-7/v7.0.68/bin/apache-tomcat-7.0.68.tar.gz dest=/tmp/install/apache-tomcat-7.0.68.tar.gz
+
+    - name: Stop jenkins
+      service: name=jenkins state=stopped
+
+    - name: Extract Tomcat archive
+      unarchive: src=/tmp/install/apache-tomcat-7.0.68.tar.gz dest=/opt/ copy=no creates=/opt/apache-tomcat-7.0.68/
+
+    - name: Add group "tomcat"
+      group: name=tomcat
+
+    - name: User add tomcat
+      user: name=tomcat group=tomcat
+
+    - name: Set tomcat password
+      shell: echo tomcat:tomcat | chpasswd
+
+    - name: Bashrc tomcat
+      copy: src=tomcatbashrc dest=/home/tomcat/.bashrc
+
+    - name: Chown apache-tomcat-7.0.68
+      file: path=/opt/apache-tomcat-7.0.68 owner=tomcat group=tomcat recurse=yes
+
+    - name: Setup tomcat server.xml
+      template: src=server.xml dest=/opt/apache-tomcat-7.0.68/conf/server.xml
+      notify: restart tomcat 
+
+    - name: Setup tomcat init
+      copy: src=inittomcat dest=/etc/init.d/tomcat mode=755
+
+    - name: Start tomcat
+      service: name=tomcat state=started enabled=yes
+
+    - name: Copy jenkins config.xml 
+      copy: src=jenkins/config.xml dest=/var/lib/jenkins/config.xml
+
+    - name: Copy jenkins hudson.tasks.Maven.xml
+      copy: src=jenkins/hudson.tasks.Maven.xml dest=/var/lib/jenkins/hudson.tasks.Maven.xml
+
+    - name: Copy jenkins jenkins.model.JenkinsLocationConfiguration.xml
+      copy: src=jenkins/jenkins.model.JenkinsLocationConfiguration.xml dest=/var/lib/jenkins/jenkins.model.JenkinsLocationConfiguration.xml
+
+    - name: Copy jobs for jenkins
+      copy: src=jenkins/jobs dest=/var/lib/jenkins/
+
+    - name: Download Jenkins plugins
+      get_url:
+        url: https://updates.jenkins-ci.org/download/plugins/{{ item }}
+        dest: /var/lib/jenkins/plugins/
+        owner: jenkins
+        group: jenkins
+        mode: 0644
+        force: no
+      with_items:
+         - copyartifact/1.37/copyartifact.hpi
+         - delivery-pipeline-plugin/0.9.9/delivery-pipeline-plugin.hpi
+         - git/2.4.4/git.hpi
+         - git-client/1.19.6/git-client.hpi
+         - github-oauth/0.22.3/github-oauth.hpi
+         - greenballs/1.15/greenballs.hpi
+         - icon-shim/2.0.3/icon-shim.hpi
+         - jquery/1.11.2-0/jquery.hpi
+         - parameterized-trigger/2.30/parameterized-trigger.hpi
+         - scm-api/1.1/scm-api.hpi
+         - token-macro/1.12/token-macro.hpi
+           
+
+    - name: Chown jenkins folder
+      file: path=/var/lib/jenkins owner=jenkins group=jenkins recurse=yes
+
+    - name: Start jenkins
+      service: name=jenkins state=started enabled=yes
+    
+  handlers:
+
+    - name: restart nginx
+      service: name=nginx state=restarted
+
+    - name: restart jenkins
+      service: name=jenkins state=restarted
+
+    - name: restart tomcat
+      service: name=tomcat state=restarted

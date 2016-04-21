@@ -1,0 +1,34 @@
+---
+# tasks file for java
+- debug: msg="Will download and install JDK 7 files"
+
+- name: Setup working directory
+  file: path=/tmp/install state=directory
+
+- name: Check Java version
+  shell: java -version 2>&1 | awk -F '"' '/version/ {print $2}'
+  register: openJDK_version 
+    
+- name: OpenJDK install
+  yum: name=java-1.7.0-openjdk state=latest
+  when: openJDK_version.stdout != "1.7.0_99"  
+    
+- name: Check JDK 7 dir
+  stat: path=/opt/jdk1.7.0_79/
+  register: jdk7_dir
+    
+- name: Download JDK 7
+  get_url:
+    url: http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-linux-x64.tar.gz
+    dest: /tmp/install
+    headers: "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie"
+  register: jdk7_targz
+  when: jdk7_dir.stat.exists == False
+
+- name: Extract JDK 7 archive
+  unarchive: src=/tmp/install/jdk-7u79-linux-x64.tar.gz dest=/opt/ copy=no creates=/opt/jdk1.7.0_79/
+  when: jdk7_dir.stat.exists == False
+
+- name: Delete JDK 7 archive
+  file: path=/tmp/install/jdk-7u79-linux-x64.tar.gz state=absent
+  when: jdk7_targz|changed

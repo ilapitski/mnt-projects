@@ -1,0 +1,281 @@
+==> default: Running provisioner: ansible...
+    default: Running ansible-playbook...
+PYTHONUNBUFFERED=1 ANSIBLE_NOCOLOR=true ANSIBLE_HOST_KEY_CHECKING=false ANSIBLE_SSH_ARGS='-o UserKnownHostsFile=/dev/null -o IdentitiesOnly=yes -o ControlMaster=auto -o ControlPersist=60s' ansible-playbook --connection=ssh --timeout=30 --limit='default' --inventory-file=/home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/.vagrant/provisioners/ansible/inventory -vv provision2.yml
+/home/super_user/.pyenv/libexec/pyenv: line 43: cd: ansible: Not a directory
+Using /home/super_user/.ansible.cfg as config file
+
+PLAYBOOK: provision2.yml *******************************************************
+1 plays in provision2.yml
+
+PLAY [Provision with Ansible2] *************************************************
+
+TASK [setup] *******************************************************************
+ok: [default]
+
+TASK [debug] *******************************************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/provision2.yml:13
+ok: [default] => {
+    "msg": "Start provision"
+}
+
+TASK [common : debug] **********************************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/common/tasks/main.yml:3
+ok: [default] => {
+    "msg": "Will install and configure common web envinronment"
+}
+
+TASK [common : Setup working directory] ****************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/common/tasks/main.yml:5
+ok: [default] => {"changed": false, "gid": 0, "group": "root", "mode": "0755", "owner": "root", "path": "/tmp/install", "size": 4096, "state": "directory", "uid": 0}
+
+TASK [common : Nginx Repo] *****************************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/common/tasks/main.yml:8
+ok: [default] => {"changed": false, "checksum": "c9c498e992acbdd544082187f9a52c43db33a6ee", "dest": "/etc/yum.repos.d/NGINX.repo", "gid": 0, "group": "root", "mode": "0644", "owner": "root", "path": "/etc/yum.repos.d/NGINX.repo", "size": 100, "state": "file", "uid": 0}
+
+TASK [common : Nginx install] **************************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/common/tasks/main.yml:11
+ok: [default] => {"changed": false, "msg": "", "rc": 0, "results": ["All packages providing nginx are up to date", ""]}
+
+TASK [common : Setup nginx virtual hosts] **************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/common/tasks/main.yml:14
+ok: [default] => {"changed": false, "gid": 0, "group": "root", "mode": "0644", "owner": "root", "path": "/etc/nginx/conf.d/virtual.conf", "size": 813, "state": "file", "uid": 0}
+
+TASK [common : Edit nginx conf] ************************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/common/tasks/main.yml:18
+ok: [default] => {"changed": false, "msg": ""}
+
+TASK [common : Start nginx] ****************************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/common/tasks/main.yml:21
+ok: [default] => {"changed": false, "enabled": true, "name": "nginx", "state": "started"}
+
+TASK [java : debug] ************************************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/java/tasks/main.yml:3
+ok: [default] => {
+    "msg": "Will download and install JDK 7 files"
+}
+
+TASK [java : Setup working directory] ******************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/java/tasks/main.yml:5
+ok: [default] => {"changed": false, "gid": 0, "group": "root", "mode": "0755", "owner": "root", "path": "/tmp/install", "size": 4096, "state": "directory", "uid": 0}
+
+TASK [java : Check Java version] ***********************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/java/tasks/main.yml:8
+changed: [default] => {"changed": true, "cmd": "java -version 2>&1 | awk -F '\"' '/version/ {print $2}'", "delta": "0:00:00.165052", "end": "2016-04-07 00:17:11.755673", "rc": 0, "start": "2016-04-07 00:17:11.590621", "stderr": "", "stdout": "1.7.0_99", "stdout_lines": ["1.7.0_99"], "warnings": []}
+
+TASK [java : OpenJDK install] **************************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/java/tasks/main.yml:12
+skipping: [default] => {"changed": false, "skip_reason": "Conditional check failed", "skipped": true}
+
+TASK [java : Check JDK 7 dir] **************************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/java/tasks/main.yml:16
+ok: [default] => {"changed": false, "stat": {"atime": 1459984023.8005638, "ctime": 1459984026.226007, "dev": 64768, "exists": true, "gid": 143, "inode": 920556, "isblk": false, "ischr": false, "isdir": true, "isfifo": false, "isgid": false, "islnk": false, "isreg": false, "issock": false, "isuid": false, "mode": "0755", "mtime": 1428692021.0, "nlink": 8, "path": "/opt/jdk1.7.0_79/", "pw_name": "uucp", "rgrp": true, "roth": true, "rusr": true, "size": 4096, "uid": 10, "wgrp": false, "woth": false, "wusr": true, "xgrp": true, "xoth": true, "xusr": true}}
+
+TASK [java : Download JDK 7] ***************************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/java/tasks/main.yml:20
+skipping: [default] => {"changed": false, "skip_reason": "Conditional check failed", "skipped": true}
+
+TASK [java : Extract JDK 7 archive] ********************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/java/tasks/main.yml:28
+skipping: [default] => {"changed": false, "skip_reason": "Conditional check failed", "skipped": true}
+
+TASK [java : Delete JDK 7 archive] *********************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/java/tasks/main.yml:32
+skipping: [default] => {"changed": false, "skip_reason": "Conditional check failed", "skipped": true}
+
+TASK [tomcat : debug] **********************************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/tomcat/tasks/main.yml:3
+ok: [default] => {
+    "msg": "Will install and configure tomcat"
+}
+
+TASK [tomcat : Add group "tomcat"] *********************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/tomcat/tasks/main.yml:5
+ok: [default] => {"changed": false, "gid": 501, "name": "tomcat", "state": "present", "system": false}
+
+TASK [tomcat : User add tomcat] ************************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/tomcat/tasks/main.yml:8
+ok: [default] => {"append": false, "changed": false, "comment": "", "group": 501, "home": "/home/tomcat", "move_home": false, "name": "tomcat", "shell": "/bin/bash", "state": "present", "uid": 501}
+
+TASK [tomcat : Set tomcat password] ********************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/tomcat/tasks/main.yml:11
+changed: [default] => {"changed": true, "cmd": "echo tomcat:tomcat | chpasswd", "delta": "0:00:00.028402", "end": "2016-04-07 00:17:13.651949", "rc": 0, "start": "2016-04-07 00:17:13.623547", "stderr": "", "stdout": "", "stdout_lines": [], "warnings": []}
+
+TASK [tomcat : Bashrc tomcat] **************************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/tomcat/tasks/main.yml:14
+ok: [default] => {"changed": false, "checksum": "6898d6893d0f4dec6b7cffdbba525533a25ca27f", "dest": "/home/tomcat/.bashrc", "gid": 501, "group": "tomcat", "mode": "0644", "owner": "tomcat", "path": "/home/tomcat/.bashrc", "size": 246, "state": "file", "uid": 501}
+
+TASK [tomcat : Check Tomcat dir] ***********************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/tomcat/tasks/main.yml:17
+ok: [default] => {"changed": false, "stat": {"atime": 1459984033.506007, "ctime": 1459984033.506007, "dev": 64768, "exists": true, "gid": 501, "gr_name": "tomcat", "inode": 926231, "isblk": false, "ischr": false, "isdir": true, "isfifo": false, "isgid": false, "islnk": false, "isreg": false, "issock": false, "isuid": false, "mode": "0755", "mtime": 1459984032.655007, "nlink": 9, "path": "/opt/apache-tomcat-7.0.68/", "pw_name": "tomcat", "rgrp": true, "roth": true, "rusr": true, "size": 4096, "uid": 501, "wgrp": false, "woth": false, "wusr": true, "xgrp": true, "xoth": true, "xusr": true}}
+
+TASK [tomcat : Download Tomcat] ************************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/tomcat/tasks/main.yml:21
+skipping: [default] => {"changed": false, "skip_reason": "Conditional check failed", "skipped": true}
+
+TASK [tomcat : Extract Tomcat archive] *****************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/tomcat/tasks/main.yml:28
+skipping: [default] => {"changed": false, "skip_reason": "Conditional check failed", "skipped": true}
+
+TASK [tomcat : Delete Tomcat archive] ******************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/tomcat/tasks/main.yml:36
+skipping: [default] => {"changed": false, "skip_reason": "Conditional check failed", "skipped": true}
+
+TASK [tomcat : Chown apache-tomcat-7.0.68] *************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/tomcat/tasks/main.yml:40
+changed: [default] => {"changed": true, "gid": 501, "group": "tomcat", "mode": "0755", "owner": "tomcat", "path": "/opt/apache-tomcat-7.0.68", "size": 4096, "state": "directory", "uid": 501}
+
+TASK [tomcat : Setup tomcat server.xml] ****************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/tomcat/tasks/main.yml:43
+ok: [default] => {"changed": false, "gid": 501, "group": "tomcat", "mode": "0600", "owner": "tomcat", "path": "/opt/apache-tomcat-7.0.68/conf/server.xml", "size": 6613, "state": "file", "uid": 501}
+
+TASK [tomcat : Setup tomcat init] **********************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/tomcat/tasks/main.yml:47
+ok: [default] => {"changed": false, "checksum": "73b53768873152e0d05854bb3b0e5f0e83647647", "dest": "/etc/init.d/tomcat", "gid": 0, "group": "root", "mode": "0755", "owner": "root", "path": "/etc/init.d/tomcat", "size": 3069, "state": "file", "uid": 0}
+
+TASK [tomcat : Start tomcat] ***************************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/tomcat/tasks/main.yml:50
+ok: [default] => {"changed": false, "enabled": true, "name": "tomcat", "state": "started"}
+
+TASK [jenkins : debug] *********************************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:3
+ok: [default] => {
+    "msg": "Will install and configure jenkins"
+}
+
+TASK [jenkins : Add group "jenkins"] *******************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:5
+ok: [default] => {"changed": false, "gid": 502, "name": "jenkins", "state": "present", "system": false}
+
+TASK [jenkins : User add jenkins] **********************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:8
+ok: [default] => {"append": false, "changed": false, "comment": "", "group": 502, "home": "/home/jenkins", "move_home": false, "name": "jenkins", "shell": "/bin/bash", "state": "present", "uid": 502}
+
+TASK [jenkins : Set jenkins password] ******************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:11
+changed: [default] => {"changed": true, "cmd": "echo jenkins:jenkins | chpasswd", "delta": "0:00:00.026920", "end": "2016-04-07 00:17:18.499624", "rc": 0, "start": "2016-04-07 00:17:18.472704", "stderr": "", "stdout": "", "stdout_lines": [], "warnings": []}
+
+TASK [jenkins : Sudoers jenkins] ***********************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:14
+ok: [default] => {"changed": false, "checksum": "16c8e98c80b3fcb41ab818fdb6f7c08868524cd9", "dest": "/etc/sudoers.d/jenkins", "gid": 0, "group": "root", "mode": "0644", "owner": "root", "path": "/etc/sudoers.d/jenkins", "size": 55, "state": "file", "uid": 0}
+
+TASK [jenkins : Bashrc jenkins for maven] **************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:17
+ok: [default] => {"changed": false, "checksum": "9d4bf59edec0489ed33f552f9aebd74993d74cf4", "dest": "/home/jenkins/.bashrc", "gid": 502, "group": "jenkins", "mode": "0644", "owner": "jenkins", "path": "/home/jenkins/.bashrc", "size": 281, "state": "file", "uid": 502}
+
+TASK [jenkins : Git install] ***************************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:20
+ok: [default] => {"changed": false, "msg": "", "rc": 0, "results": ["All packages providing git-all are up to date", ""]}
+
+TASK [jenkins : Setup jenkins repo] ********************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:23
+ok: [default] => {"changed": false, "dest": "/etc/yum.repos.d/jenkins.repo", "gid": 0, "group": "root", "mode": "0644", "msg": "file already exists", "owner": "root", "size": 89, "state": "file", "uid": 0, "url": "http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo"}
+
+TASK [jenkins : Import jenkins key] ********************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:26
+ok: [default] => {"changed": false}
+
+TASK [jenkins : Jenkins install] ***********************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:29
+ok: [default] => {"changed": false, "msg": "", "rc": 0, "results": ["jenkins-1.642.4-1.1.noarch providing jenkins is already installed"]}
+
+TASK [jenkins : Setup jenkins sysconfig] ***************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:32
+ok: [default] => {"changed": false, "gid": 0, "group": "root", "mode": "0600", "owner": "root", "path": "/etc/sysconfig/jenkins", "size": 3519, "state": "file", "uid": 0}
+
+TASK [jenkins : Check maven dir] ***********************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:36
+ok: [default] => {"changed": false, "stat": {"atime": 1459984082.126007, "ctime": 1459984082.126007, "dev": 64768, "exists": true, "gid": 502, "gr_name": "jenkins", "inode": 136455, "isblk": false, "ischr": false, "isdir": true, "isfifo": false, "isgid": false, "islnk": false, "isreg": false, "issock": false, "isuid": false, "mode": "0755", "mtime": 1459984081.326007, "nlink": 6, "path": "/opt/apache-maven-3.3.9/", "pw_name": "jenkins", "rgrp": true, "roth": true, "rusr": true, "size": 4096, "uid": 502, "wgrp": false, "woth": false, "wusr": true, "xgrp": true, "xoth": true, "xusr": true}}
+
+TASK [jenkins : Download maven] ************************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:40
+skipping: [default] => {"changed": false, "skip_reason": "Conditional check failed", "skipped": true}
+
+TASK [jenkins : Extract maven archive] *****************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:47
+skipping: [default] => {"changed": false, "skip_reason": "Conditional check failed", "skipped": true}
+
+TASK [jenkins : Delete maven archive] ******************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:55
+skipping: [default] => {"changed": false, "skip_reason": "Conditional check failed", "skipped": true}
+
+TASK [jenkins : Chown apache-maven-3.3.9 for jenkins] **************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:59
+ok: [default] => {"changed": false, "gid": 502, "group": "jenkins", "mode": "0755", "owner": "jenkins", "path": "/opt/apache-maven-3.3.9", "size": 4096, "state": "directory", "uid": 502}
+
+TASK [jenkins : Copy jenkins configuration files] ******************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:66
+ok: [default] => (item=config.xml) => {"changed": false, "checksum": "7603de2cb3263fc115d1ea37d62b5ee7180c4555", "dest": "/var/lib/jenkins/config.xml", "gid": 502, "group": "jenkins", "item": "config.xml", "mode": "0644", "owner": "jenkins", "path": "/var/lib/jenkins/config.xml", "size": 2761, "state": "file", "uid": 502}
+ok: [default] => (item=hudson.tasks.Maven.xml) => {"changed": false, "checksum": "2f2018d34a7baa15570083282db350e675de9d3b", "dest": "/var/lib/jenkins/hudson.tasks.Maven.xml", "gid": 502, "group": "jenkins", "item": "hudson.tasks.Maven.xml", "mode": "0644", "owner": "jenkins", "path": "/var/lib/jenkins/hudson.tasks.Maven.xml", "size": 333, "state": "file", "uid": 502}
+ok: [default] => (item=jenkins.model.JenkinsLocationConfiguration.xml) => {"changed": false, "checksum": "dda40936c4203897fbee2dbbcd4dd3a7ea2d1161", "dest": "/var/lib/jenkins/jenkins.model.JenkinsLocationConfiguration.xml", "gid": 502, "group": "jenkins", "item": "jenkins.model.JenkinsLocationConfiguration.xml", "mode": "0644", "owner": "jenkins", "path": "/var/lib/jenkins/jenkins.model.JenkinsLocationConfiguration.xml", "size": 268, "state": "file", "uid": 502}
+
+TASK [jenkins : Copy jobs for jenkins] *****************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:75
+ok: [default] => {"changed": false, "dest": "/var/lib/jenkins/", "src": "/home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/files/jobs"}
+
+TASK [jenkins : Setup jenkins plugins directory] *******************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:78
+ok: [default] => {"changed": false, "gid": 502, "group": "jenkins", "mode": "0755", "owner": "jenkins", "path": "/var/lib/jenkins/plugins/", "size": 4096, "state": "directory", "uid": 502}
+
+TASK [jenkins : Check jenkins plugins existance] *******************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:85
+ok: [default] => (item=copyartifact.hpi) => {"changed": false, "item": "copyartifact.hpi", "stat": {"atime": 1459984156.8360069, "checksum": "594ab621e1cc21fa8fe3e8b1398a8e13808bca41", "ctime": 1459984094.812007, "dev": 64768, "exists": true, "gid": 502, "gr_name": "jenkins", "inode": 136566, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "md5": "6ccef407e9d20bcd467927c00a226325", "mode": "0644", "mtime": 1459984094.812007, "nlink": 1, "path": "/var/lib/jenkins/plugins/copyartifact.hpi", "pw_name": "jenkins", "rgrp": true, "roth": true, "rusr": true, "size": 187666, "uid": 502, "wgrp": false, "woth": false, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}
+ok: [default] => (item=delivery-pipeline-plugin.hpi) => {"changed": false, "item": "delivery-pipeline-plugin.hpi", "stat": {"atime": 1459984156.605007, "checksum": "6bd5e04f2c49028df22e6284fcedaf3778867dd3", "ctime": 1459984098.793007, "dev": 64768, "exists": true, "gid": 502, "gr_name": "jenkins", "inode": 136567, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "md5": "82587468491acb029de4f24673440fb2", "mode": "0644", "mtime": 1459984098.793007, "nlink": 1, "path": "/var/lib/jenkins/plugins/delivery-pipeline-plugin.hpi", "pw_name": "jenkins", "rgrp": true, "roth": true, "rusr": true, "size": 461757, "uid": 502, "wgrp": false, "woth": false, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}
+ok: [default] => (item=git.hpi) => {"changed": false, "item": "git.hpi", "stat": {"atime": 1459984103.227007, "checksum": "40af0ff8a9ea806a053b140c7562ea828e385612", "ctime": 1459984103.226007, "dev": 64768, "exists": true, "gid": 502, "gr_name": "jenkins", "inode": 136568, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "md5": "65266d3d56d4710be46a736822779a10", "mode": "0644", "mtime": 1459984103.220007, "nlink": 1, "path": "/var/lib/jenkins/plugins/git.hpi", "pw_name": "jenkins", "rgrp": true, "roth": true, "rusr": true, "size": 1397354, "uid": 502, "wgrp": false, "woth": false, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}
+ok: [default] => (item=git-client.hpi) => {"changed": false, "item": "git-client.hpi", "stat": {"atime": 1459984107.696007, "checksum": "7ab5b9ec5635084ce192402e2d3203d2dfd66e65", "ctime": 1459984107.686007, "dev": 64768, "exists": true, "gid": 502, "gr_name": "jenkins", "inode": 136569, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "md5": "03437fa2faefd979656a296421cff68c", "mode": "0644", "mtime": 1459984107.686007, "nlink": 1, "path": "/var/lib/jenkins/plugins/git-client.hpi", "pw_name": "jenkins", "rgrp": true, "roth": true, "rusr": true, "size": 3500007, "uid": 502, "wgrp": false, "woth": false, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}
+ok: [default] => (item=github-oauth.hpi) => {"changed": false, "item": "github-oauth.hpi", "stat": {"atime": 1459984112.076007, "checksum": "fa78f4349987e78032ce6b4f9cf1a8a2643c66fe", "ctime": 1459984112.075007, "dev": 64768, "exists": true, "gid": 502, "gr_name": "jenkins", "inode": 136570, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "md5": "5650b96478ec30a06841b4b6dd679b07", "mode": "0644", "mtime": 1459984112.075007, "nlink": 1, "path": "/var/lib/jenkins/plugins/github-oauth.hpi", "pw_name": "jenkins", "rgrp": true, "roth": true, "rusr": true, "size": 674223, "uid": 502, "wgrp": false, "woth": false, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}
+ok: [default] => (item=grenballs.hpi) => {"changed": false, "item": "grenballs.hpi", "stat": {"exists": false}}
+ok: [default] => (item=icon-shim.hpi) => {"changed": false, "item": "icon-shim.hpi", "stat": {"atime": 1459984156.740007, "checksum": "ba6b5251b37022ea94e8918441c071a85b755f6e", "ctime": 1459984119.8540072, "dev": 64768, "exists": true, "gid": 502, "gr_name": "jenkins", "inode": 136572, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "md5": "13f7085869f1fb8a98dfc9b3ebe0ebab", "mode": "0644", "mtime": 1459984119.853007, "nlink": 1, "path": "/var/lib/jenkins/plugins/icon-shim.hpi", "pw_name": "jenkins", "rgrp": true, "roth": true, "rusr": true, "size": 24920, "uid": 502, "wgrp": false, "woth": false, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}
+ok: [default] => (item=jquery.hpi) => {"changed": false, "item": "jquery.hpi", "stat": {"atime": 1459984124.5760071, "checksum": "78e9df74a02ad634c92c0e97279a9f4225c163aa", "ctime": 1459984124.569007, "dev": 64768, "exists": true, "gid": 502, "gr_name": "jenkins", "inode": 136573, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "md5": "9da63f0ce212e1e8b44a68252739dbaa", "mode": "0644", "mtime": 1459984124.569007, "nlink": 1, "path": "/var/lib/jenkins/plugins/jquery.hpi", "pw_name": "jenkins", "rgrp": true, "roth": true, "rusr": true, "size": 3003464, "uid": 502, "wgrp": false, "woth": false, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}
+ok: [default] => (item=parameterized-trigger.hpi) => {"changed": false, "item": "parameterized-trigger.hpi", "stat": {"atime": 1459984128.786007, "checksum": "5bb77624894d17f64b407bc63893ffc2afff3236", "ctime": 1459984128.784007, "dev": 64768, "exists": true, "gid": 502, "gr_name": "jenkins", "inode": 136574, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "md5": "bcd134c6bf83d587ccd57f83ae8bfcf8", "mode": "0644", "mtime": 1459984128.784007, "nlink": 1, "path": "/var/lib/jenkins/plugins/parameterized-trigger.hpi", "pw_name": "jenkins", "rgrp": true, "roth": true, "rusr": true, "size": 1225588, "uid": 502, "wgrp": false, "woth": false, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}
+ok: [default] => (item=scm-api.hpi) => {"changed": false, "item": "scm-api.hpi", "stat": {"atime": 1459984156.737007, "checksum": "dbdf02bf9f53f5cf0726a0302e48b798cef09f61", "ctime": 1459984132.718007, "dev": 64768, "exists": true, "gid": 502, "gr_name": "jenkins", "inode": 136575, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "md5": "083fc6d1bee9b887b9e7e0d61cd57099", "mode": "0644", "mtime": 1459984132.7170072, "nlink": 1, "path": "/var/lib/jenkins/plugins/scm-api.hpi", "pw_name": "jenkins", "rgrp": true, "roth": true, "rusr": true, "size": 41693, "uid": 502, "wgrp": false, "woth": false, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}
+ok: [default] => (item=token-macro.hpi) => {"changed": false, "item": "token-macro.hpi", "stat": {"atime": 1459984156.716007, "checksum": "99f34b6725dab1505d8fb7ceca1150afd0f976a4", "ctime": 1459984136.5880067, "dev": 64768, "exists": true, "gid": 502, "gr_name": "jenkins", "inode": 136576, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "md5": "7de13c80a0677f7045d30eff507002c8", "mode": "0644", "mtime": 1459984136.5880067, "nlink": 1, "path": "/var/lib/jenkins/plugins/token-macro.hpi", "pw_name": "jenkins", "rgrp": true, "roth": true, "rusr": true, "size": 78347, "uid": 502, "wgrp": false, "woth": false, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}
+
+TASK [jenkins : Download Jenkins plugins] **************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:90
+ok: [default] => (item=copyartifact/1.37/copyartifact.hpi) => {"changed": false, "checksum_dest": "594ab621e1cc21fa8fe3e8b1398a8e13808bca41", "checksum_src": "594ab621e1cc21fa8fe3e8b1398a8e13808bca41", "dest": "/var/lib/jenkins/plugins/copyartifact.hpi", "gid": 502, "group": "jenkins", "item": "copyartifact/1.37/copyartifact.hpi", "md5sum": "6ccef407e9d20bcd467927c00a226325", "mode": "0644", "msg": "OK (187666 bytes)", "owner": "jenkins", "size": 187666, "src": "/tmp/tmp2NUR1l", "state": "file", "uid": 502, "url": "https://updates.jenkins-ci.org/download/plugins/copyartifact/1.37/copyartifact.hpi"}
+ok: [default] => (item=delivery-pipeline-plugin/0.9.9/delivery-pipeline-plugin.hpi) => {"changed": false, "checksum_dest": "6bd5e04f2c49028df22e6284fcedaf3778867dd3", "checksum_src": "6bd5e04f2c49028df22e6284fcedaf3778867dd3", "dest": "/var/lib/jenkins/plugins/delivery-pipeline-plugin.hpi", "gid": 502, "group": "jenkins", "item": "delivery-pipeline-plugin/0.9.9/delivery-pipeline-plugin.hpi", "md5sum": "82587468491acb029de4f24673440fb2", "mode": "0644", "msg": "OK (461757 bytes)", "owner": "jenkins", "size": 461757, "src": "/tmp/tmpYHqwmq", "state": "file", "uid": 502, "url": "https://updates.jenkins-ci.org/download/plugins/delivery-pipeline-plugin/0.9.9/delivery-pipeline-plugin.hpi"}
+ok: [default] => (item=git/2.4.4/git.hpi) => {"changed": false, "checksum_dest": "40af0ff8a9ea806a053b140c7562ea828e385612", "checksum_src": "40af0ff8a9ea806a053b140c7562ea828e385612", "dest": "/var/lib/jenkins/plugins/git.hpi", "gid": 502, "group": "jenkins", "item": "git/2.4.4/git.hpi", "md5sum": "65266d3d56d4710be46a736822779a10", "mode": "0644", "msg": "OK (1397354 bytes)", "owner": "jenkins", "size": 1397354, "src": "/tmp/tmpcyXDXP", "state": "file", "uid": 502, "url": "https://updates.jenkins-ci.org/download/plugins/git/2.4.4/git.hpi"}
+ok: [default] => (item=git-client/1.19.6/git-client.hpi) => {"changed": false, "checksum_dest": "7ab5b9ec5635084ce192402e2d3203d2dfd66e65", "checksum_src": "7ab5b9ec5635084ce192402e2d3203d2dfd66e65", "dest": "/var/lib/jenkins/plugins/git-client.hpi", "gid": 502, "group": "jenkins", "item": "git-client/1.19.6/git-client.hpi", "md5sum": "03437fa2faefd979656a296421cff68c", "mode": "0644", "msg": "OK (3500007 bytes)", "owner": "jenkins", "size": 3500007, "src": "/tmp/tmp2p0BtQ", "state": "file", "uid": 502, "url": "https://updates.jenkins-ci.org/download/plugins/git-client/1.19.6/git-client.hpi"}
+ok: [default] => (item=github-oauth/0.22.3/github-oauth.hpi) => {"changed": false, "checksum_dest": "fa78f4349987e78032ce6b4f9cf1a8a2643c66fe", "checksum_src": "fa78f4349987e78032ce6b4f9cf1a8a2643c66fe", "dest": "/var/lib/jenkins/plugins/github-oauth.hpi", "gid": 502, "group": "jenkins", "item": "github-oauth/0.22.3/github-oauth.hpi", "md5sum": "5650b96478ec30a06841b4b6dd679b07", "mode": "0644", "msg": "OK (674223 bytes)", "owner": "jenkins", "size": 674223, "src": "/tmp/tmpWaUEti", "state": "file", "uid": 502, "url": "https://updates.jenkins-ci.org/download/plugins/github-oauth/0.22.3/github-oauth.hpi"}
+ok: [default] => (item=greenballs/1.15/greenballs.hpi) => {"changed": false, "checksum_dest": "fd46d3d65aef44974aa82f46b3e2baffbc04529f", "checksum_src": "fd46d3d65aef44974aa82f46b3e2baffbc04529f", "dest": "/var/lib/jenkins/plugins/greenballs.hpi", "gid": 502, "group": "jenkins", "item": "greenballs/1.15/greenballs.hpi", "md5sum": "ec2edfd302924440681f8ac1735bb3e0", "mode": "0644", "msg": "OK (111507 bytes)", "owner": "jenkins", "size": 111507, "src": "/tmp/tmpOSRgNG", "state": "file", "uid": 502, "url": "https://updates.jenkins-ci.org/download/plugins/greenballs/1.15/greenballs.hpi"}
+ok: [default] => (item=icon-shim/2.0.3/icon-shim.hpi) => {"changed": false, "checksum_dest": "ba6b5251b37022ea94e8918441c071a85b755f6e", "checksum_src": "ba6b5251b37022ea94e8918441c071a85b755f6e", "dest": "/var/lib/jenkins/plugins/icon-shim.hpi", "gid": 502, "group": "jenkins", "item": "icon-shim/2.0.3/icon-shim.hpi", "md5sum": "13f7085869f1fb8a98dfc9b3ebe0ebab", "mode": "0644", "msg": "OK (24920 bytes)", "owner": "jenkins", "size": 24920, "src": "/tmp/tmp30lqdn", "state": "file", "uid": 502, "url": "https://updates.jenkins-ci.org/download/plugins/icon-shim/2.0.3/icon-shim.hpi"}
+ok: [default] => (item=jquery/1.11.2-0/jquery.hpi) => {"changed": false, "checksum_dest": "78e9df74a02ad634c92c0e97279a9f4225c163aa", "checksum_src": "78e9df74a02ad634c92c0e97279a9f4225c163aa", "dest": "/var/lib/jenkins/plugins/jquery.hpi", "gid": 502, "group": "jenkins", "item": "jquery/1.11.2-0/jquery.hpi", "md5sum": "9da63f0ce212e1e8b44a68252739dbaa", "mode": "0644", "msg": "OK (3003464 bytes)", "owner": "jenkins", "size": 3003464, "src": "/tmp/tmpcHb0O1", "state": "file", "uid": 502, "url": "https://updates.jenkins-ci.org/download/plugins/jquery/1.11.2-0/jquery.hpi"}
+ok: [default] => (item=parameterized-trigger/2.30/parameterized-trigger.hpi) => {"changed": false, "checksum_dest": "5bb77624894d17f64b407bc63893ffc2afff3236", "checksum_src": "5bb77624894d17f64b407bc63893ffc2afff3236", "dest": "/var/lib/jenkins/plugins/parameterized-trigger.hpi", "gid": 502, "group": "jenkins", "item": "parameterized-trigger/2.30/parameterized-trigger.hpi", "md5sum": "bcd134c6bf83d587ccd57f83ae8bfcf8", "mode": "0644", "msg": "OK (1225588 bytes)", "owner": "jenkins", "size": 1225588, "src": "/tmp/tmpgL4bK3", "state": "file", "uid": 502, "url": "https://updates.jenkins-ci.org/download/plugins/parameterized-trigger/2.30/parameterized-trigger.hpi"}
+ok: [default] => (item=scm-api/1.1/scm-api.hpi) => {"changed": false, "checksum_dest": "dbdf02bf9f53f5cf0726a0302e48b798cef09f61", "checksum_src": "dbdf02bf9f53f5cf0726a0302e48b798cef09f61", "dest": "/var/lib/jenkins/plugins/scm-api.hpi", "gid": 502, "group": "jenkins", "item": "scm-api/1.1/scm-api.hpi", "md5sum": "083fc6d1bee9b887b9e7e0d61cd57099", "mode": "0644", "msg": "OK (41693 bytes)", "owner": "jenkins", "size": 41693, "src": "/tmp/tmpm1JsxG", "state": "file", "uid": 502, "url": "https://updates.jenkins-ci.org/download/plugins/scm-api/1.1/scm-api.hpi"}
+ok: [default] => (item=token-macro/1.12/token-macro.hpi) => {"changed": false, "checksum_dest": "99f34b6725dab1505d8fb7ceca1150afd0f976a4", "checksum_src": "99f34b6725dab1505d8fb7ceca1150afd0f976a4", "dest": "/var/lib/jenkins/plugins/token-macro.hpi", "gid": 502, "group": "jenkins", "item": "token-macro/1.12/token-macro.hpi", "md5sum": "7de13c80a0677f7045d30eff507002c8", "mode": "0644", "msg": "OK (78347 bytes)", "owner": "jenkins", "size": 78347, "src": "/tmp/tmp3LS6kv", "state": "file", "uid": 502, "url": "https://updates.jenkins-ci.org/download/plugins/token-macro/1.12/token-macro.hpi"}
+
+TASK [jenkins : Chown jenkins folder] ******************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:102
+ok: [default] => {"changed": false, "gid": 502, "group": "jenkins", "mode": "0755", "owner": "jenkins", "path": "/var/lib/jenkins", "size": 4096, "state": "directory", "uid": 502}
+
+TASK [jenkins : Start jenkins] *************************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:105
+ok: [default] => {"changed": false, "enabled": true, "name": "jenkins", "state": "started"}
+
+TASK [debug] *******************************************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/provision2.yml:22
+ok: [default] => {
+    "services_info.split('\n')": [
+        "Jenkins URL - http://localhost:8080/jenkins/", 
+        "Jenkins Delivery - http://localhost:8080/jenkins/view/pipe/", 
+        "Application URL - http://localhost:8080/mnt-lab/", 
+        ""
+    ]
+}
+
+PLAY RECAP *********************************************************************
+default                    : ok=44   changed=4    unreachable=0    failed=0   
+
+TASK: jenkins : Download Jenkins plugins ------------------------------- 47.64s
+TASK: jenkins : Check jenkins plugins existance ------------------------- 3.80s
+TASK: jenkins : Copy jenkins configuration files ------------------------ 2.10s
+TASK: jenkins : Import jenkins key -------------------------------------- 2.06s
+TASK: jenkins : Copy jobs for jenkins ----------------------------------- 1.34s
+TASK: common : Nginx install -------------------------------------------- 1.24s
+TASK: jenkins : Git install --------------------------------------------- 1.14s
+TASK: jenkins : Bashrc jenkins for maven -------------------------------- 0.73s
+TASK: common : Nginx Repo ----------------------------------------------- 0.73s
+TASK: jenkins : Sudoers jenkins ----------------------------------------- 0.72s
+
+Playbook finished: Thu Apr  7 02:18:22 2016, 54 total tasks.  0:01:15 elapsed. 
+

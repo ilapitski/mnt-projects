@@ -1,0 +1,52 @@
+==> default: Running provisioner: ansible...
+    default: Running ansible-playbook...
+PYTHONUNBUFFERED=1 ANSIBLE_NOCOLOR=true ANSIBLE_HOST_KEY_CHECKING=false ANSIBLE_SSH_ARGS='-o UserKnownHostsFile=/dev/null -o IdentitiesOnly=yes -o ControlMaster=auto -o ControlPersist=60s' ansible-playbook --connection=ssh --timeout=30 --limit='default' --inventory-file=/home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/.vagrant/provisioners/ansible/inventory -vv provision2.yml
+/home/super_user/.pyenv/libexec/pyenv: line 43: cd: ansible: Not a directory
+Using /home/super_user/.ansible.cfg as config file
+
+PLAYBOOK: provision2.yml *******************************************************
+1 plays in provision2.yml
+
+PLAY [Provision with Ansible2] *************************************************
+
+TASK [setup] *******************************************************************
+ok: [default]
+
+TASK [debug] *******************************************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/provision2.yml:13
+ok: [default] => {
+    "msg": "Start provision"
+}
+
+TASK [jenkins : Check jenkins plugins existance] *******************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:93
+ok: [default] => (item=copyartifact.hpi) => {"changed": false, "item": "copyartifact.hpi", "stat": {"exists": false}}
+ok: [default] => (item=delivery-pipeline-plugin.hpi) => {"changed": false, "item": "delivery-pipeline-plugin.hpi", "stat": {"atime": 1459978955.336007, "checksum": "6bd5e04f2c49028df22e6284fcedaf3778867dd3", "ctime": 1459978803.462007, "dev": 64768, "exists": true, "gid": 502, "gr_name": "jenkins", "inode": 793977, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "md5": "82587468491acb029de4f24673440fb2", "mode": "0644", "mtime": 1459978803.462007, "nlink": 1, "path": "/var/lib/jenkins/plugins/delivery-pipeline-plugin.hpi", "pw_name": "jenkins", "rgrp": true, "roth": true, "rusr": true, "size": 461757, "uid": 502, "wgrp": false, "woth": false, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}
+
+TASK [jenkins : Download Jenkins plugins] **************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:99
+changed: [default] => (item=copyartifact/1.37/copyartifact.hpi) => {"changed": true, "checksum_dest": null, "checksum_src": "594ab621e1cc21fa8fe3e8b1398a8e13808bca41", "dest": "/var/lib/jenkins/plugins/copyartifact.hpi", "gid": 502, "group": "jenkins", "item": "copyartifact/1.37/copyartifact.hpi", "md5sum": "6ccef407e9d20bcd467927c00a226325", "mode": "0644", "msg": "OK (187666 bytes)", "owner": "jenkins", "size": 187666, "src": "/tmp/tmpNlBQsK", "state": "file", "uid": 502, "url": "https://updates.jenkins-ci.org/download/plugins/copyartifact/1.37/copyartifact.hpi"}
+ok: [default] => (item=delivery-pipeline-plugin/0.9.9/delivery-pipeline-plugin.hpi) => {"changed": false, "checksum_dest": "6bd5e04f2c49028df22e6284fcedaf3778867dd3", "checksum_src": "6bd5e04f2c49028df22e6284fcedaf3778867dd3", "dest": "/var/lib/jenkins/plugins/delivery-pipeline-plugin.hpi", "gid": 502, "group": "jenkins", "item": "delivery-pipeline-plugin/0.9.9/delivery-pipeline-plugin.hpi", "md5sum": "82587468491acb029de4f24673440fb2", "mode": "0644", "msg": "OK (461757 bytes)", "owner": "jenkins", "size": 461757, "src": "/tmp/tmpIShaDS", "state": "file", "uid": 502, "url": "https://updates.jenkins-ci.org/download/plugins/delivery-pipeline-plugin/0.9.9/delivery-pipeline-plugin.hpi"}
+
+TASK [jenkins : Chown jenkins folder] ******************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/roles/jenkins/tasks/main.yml:115
+ok: [default] => {"changed": false, "gid": 502, "group": "jenkins", "mode": "0755", "owner": "jenkins", "path": "/var/lib/jenkins", "size": 4096, "state": "directory", "uid": 502}
+
+TASK [debug] *******************************************************************
+task path: /home/super_user/mntlab-ansible/mntlab-ansible/vagrant/ansible2/provision2.yml:20
+ok: [default] => {
+    "services_info.split('\n')": "VARIABLE IS NOT DEFINED!"
+}
+
+PLAY RECAP *********************************************************************
+default                    : ok=6    changed=1    unreachable=0    failed=0   
+
+TASK: jenkins : Download Jenkins plugins -------------------------------- 8.18s
+TASK: jenkins : Check jenkins plugins existance ------------------------- 0.71s
+TASK: setup ------------------------------------------------------------- 0.54s
+TASK: jenkins : Chown jenkins folder ------------------------------------ 0.43s
+TASK: debug ------------------------------------------------------------- 0.03s
+TASK: debug ------------------------------------------------------------- 0.02s
+
+Playbook finished: Thu Apr  7 00:52:50 2016, 6 total tasks.  0:00:09 elapsed. 
+

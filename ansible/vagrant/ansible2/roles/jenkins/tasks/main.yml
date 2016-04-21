@@ -1,0 +1,106 @@
+#---
+# tasks file for jenkins
+- debug: msg="Will install and configure jenkins"
+
+- name: Add group "jenkins"
+  group: name=jenkins
+  
+- name: User add jenkins
+  user: name=jenkins group=jenkins createhome=yes
+  
+- name: Set jenkins password
+  shell: echo jenkins:jenkins | chpasswd
+
+- name: Sudoers jenkins
+  copy: src=sudojenkinscp dest=/etc/sudoers.d/jenkins
+  
+- name: Bashrc jenkins for maven
+  copy: src=jenkinsbashrc dest=/home/jenkins/.bashrc
+  
+- name: Git install
+  yum: name=git-all state=latest
+  
+- name: Setup jenkins repo
+  get_url: url=http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo dest=/etc/yum.repos.d/jenkins.repo
+
+- name: Import jenkins key
+  rpm_key: key=https://jenkins-ci.org/redhat/jenkins-ci.org.key state=present validate_certs=no
+
+- name: Jenkins install
+  yum: name=jenkins state=present
+
+- name: Setup jenkins sysconfig
+  template: src=jenkinssys dest=/etc/sysconfig/jenkins
+  notify: restart jenkins  
+  
+- name: Check maven dir
+  stat: path=/opt/apache-maven-3.3.9/
+  register: maven_dir
+       
+- name: Download maven
+  get_url:
+    url: http://ftp.byfly.by/pub/apache.org/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+    dest: /tmp/install/apache-maven-3.3.9-bin.tar.gz
+  register: maven_targz
+  when: maven_dir.stat.exists == False
+
+- name: Extract maven archive
+  unarchive:
+    src: /tmp/install/apache-maven-3.3.9-bin.tar.gz
+    dest: /opt/
+    copy: no
+    creates: /opt/apache-maven-3.3.9/
+  when: maven_dir.stat.exists == False
+  
+- name: Delete maven archive
+  file: path=/tmp/install/apache-maven-3.3.9-bin.tar.gz state=absent
+  when: maven_targz|changed
+    
+- name: Chown apache-maven-3.3.9 for jenkins
+  file: 
+    path: /opt/apache-maven-3.3.9 
+    owner: jenkins
+    group: jenkins
+    recurse: yes
+
+- name: Copy jenkins configuration files
+  copy:
+    src: "{{ item }}"
+    dest: /var/lib/jenkins/
+    owner: jenkins
+    group: jenkins
+    #mode: 0644
+  with_items: '{{ jenkins_config_files }}'
+  
+- name: Copy jobs for jenkins
+  copy: src=jobs dest=/var/lib/jenkins/
+         
+- name: Setup jenkins plugins directory
+  file:
+    path: /var/lib/jenkins/plugins/
+    state: directory
+    owner: jenkins
+    group: jenkins
+        
+- name: Check jenkins plugins existance
+  stat: path=/var/lib/jenkins/plugins/{{ item }}
+  with_items: '{{jenkins_plugins_exists}}'
+  register: pl_ex
+        
+- name: Download Jenkins plugins
+  get_url:
+    url: https://updates.jenkins-ci.org/download/plugins/{{ item }}
+    dest: /var/lib/jenkins/plugins/
+    owner: jenkins
+    group: jenkins
+    #mode: 0744
+    force: no
+  with_items: "{{ jenkins_plugins_download }}"
+  when: pl_ex.changed == False
+  #when: pl_ex.item.stat.exists == False
+   
+- name: Chown jenkins folder
+  file: path=/var/lib/jenkins owner=jenkins group=jenkins recurse=yes
+
+- name: Start jenkins
+  service: name=jenkins state=started enabled=yes

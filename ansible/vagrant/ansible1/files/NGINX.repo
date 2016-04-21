@@ -1,0 +1,6 @@
+[NGINX]
+name=NGINX repo
+baseurl=http://NGINX.org/packages/centos/6/$basearch/
+gpgcheck=0
+enabled=1
+

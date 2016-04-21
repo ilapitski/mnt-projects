@@ -1,0 +1,34 @@
+---
+# vars file for jenkins
+jenkins_http_port: 8081
+jenkins_listen_address: 127.0.0.1
+jenkins_ajp_port: 8010
+jenkins_prefix: "--prefix=/jenkins"
+jenkins_config_files:
+   - config.xml
+   - hudson.tasks.Maven.xml
+   - jenkins.model.JenkinsLocationConfiguration.xml
+jenkins_plugins_download:
+   - copyartifact/1.37/copyartifact.hpi
+   - delivery-pipeline-plugin/0.9.9/delivery-pipeline-plugin.hpi
+   - git/2.4.4/git.hpi
+   - git-client/1.19.6/git-client.hpi
+   - github-oauth/0.22.3/github-oauth.hpi
+   - greenballs/1.15/greenballs.hpi
+   - icon-shim/2.0.3/icon-shim.hpi
+   - jquery/1.11.2-0/jquery.hpi
+   - parameterized-trigger/2.30/parameterized-trigger.hpi
+   - scm-api/1.1/scm-api.hpi
+   - token-macro/1.12/token-macro.hpi
+jenkins_plugins_exists:
+   - copyartifact.hpi
+   - delivery-pipeline-plugin.hpi
+   - git.hpi
+   - git-client.hpi
+   - github-oauth.hpi
+   - grenballs.hpi
+   - icon-shim.hpi
+   - jquery.hpi
+   - parameterized-trigger.hpi
+   - scm-api.hpi
+   - token-macro.hpi

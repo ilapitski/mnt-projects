@@ -1,0 +1,52 @@
+---
+# tasks file for tomcat
+- debug: msg="Will install and configure tomcat"
+
+- name: Add group "tomcat"
+  group: name=tomcat
+
+- name: User add tomcat
+  user: name=tomcat group=tomcat
+
+- name: Set tomcat password
+  shell: echo tomcat:tomcat | chpasswd
+  
+- name: Bashrc tomcat
+  copy: src=tomcatbashrc dest=/home/tomcat/.bashrc
+    
+- name: Check Tomcat dir
+  stat: path=/opt/apache-tomcat-7.0.68/
+  register: tomcat_dir
+  
+- name: Download Tomcat
+  get_url:
+    url: http://ftp.byfly.by/pub/apache.org/tomcat/tomcat-7/v7.0.68/bin/apache-tomcat-7.0.68.tar.gz
+    dest: /tmp/install/apache-tomcat-7.0.68.tar.gz
+  register: tomcat_targz
+  when: tomcat_dir.stat.exists == False
+        
+- name: Extract Tomcat archive
+  unarchive: 
+    src: /tmp/install/apache-tomcat-7.0.68.tar.gz
+    dest: /opt/
+    copy: no
+    creates: /opt/apache-tomcat-7.0.68/
+  when: tomcat_dir.stat.exists == False
+  
+- name: Delete Tomcat archive
+  file: path=/tmp/install/apache-tomcat-7.0.68.tar.gz state=absent
+  when: tomcat_targz|changed
+        
+- name: Chown apache-tomcat-7.0.68
+  file: path=/opt/apache-tomcat-7.0.68 owner=tomcat group=tomcat recurse=yes
+
+- name: Setup tomcat server.xml
+  template: src=server.xml dest=/opt/apache-tomcat-7.0.68/conf/server.xml
+  notify: restart tomcat 
+
+- name: Setup tomcat init
+  copy: src=inittomcat dest=/etc/init.d/tomcat mode=755
+
+- name: Start tomcat
+  service: name=tomcat state=started enabled=yes
+  

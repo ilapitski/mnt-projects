@@ -1,0 +1,22 @@
+---
+- name: Provision with Ansible2
+  hosts: all
+  become: yes
+  
+  vars:
+    services_info: |
+      Jenkins URL - http://localhost:{{ nginx_http_port }}/jenkins/
+      Jenkins Delivery - http://localhost:{{ nginx_http_port  }}/jenkins/view/pipe/
+      Application URL - http://localhost:{{ nginx_http_port }}/mnt-lab/
+  
+  pre_tasks:
+  - debug: msg="Start provision"
+  
+  roles:
+   - { role: all }
+   #- { role: tomcat, nginx_http_port: 8080, tomcat_http_port: 8082 }
+   #- { role: jenkins, nginx_http_port: 8080, jenkins_http_port: 8081, jenkins_ajp_port: 8010, tomcat_http_port: 8082}
+   
+  
+  post_tasks:
+  - debug: var=services_info.split('\n')
