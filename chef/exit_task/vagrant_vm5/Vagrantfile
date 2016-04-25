@@ -1,0 +1,29 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure(2) do |config|
+
+#config.vm.provision "shell", inline: "echo Apache_server_install && yum\
+ #update -y && yum install -y httpd && chkconfig httpd on && /etc/init.d/httpd start"
+
+$script = <<SCRIPT
+echo Provisioning...
+echo "192.168.33.30    chef-server" >> /etc/hosts
+SCRIPT
+
+config.vm.provision "shell", inline:$script  # provisioning
+
+config.vm.define :vm5 do |vm5|
+    vm5.vm.box = "sbeliakou/centos-6.7-x86_64"
+    vm5.vm.hostname = "chef-vm5"
+    vm5.vm.network "private_network", ip: "192.168.33.35"
+    vm5.vm.network "forwarded_port", guest: 80, host: 8080
+    #vm5.vm.synced_folder ".", "/vagrant", disabled: true
+    #vm5.vm.synced_folder "/root/vagrant/share", "/vagrant-vm-share", type: "rsync"
+        vm5.vm.provider "virtualbox" do |vb5|
+	     	vb5.name = "chef-vm5"
+		vb5.customize ["modifyvm", :id, "--memory", 2048]
+		#vb5.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+	end
+  end
+
+end

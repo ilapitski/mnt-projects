@@ -1,0 +1,12 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific aliases and functions
+export M2_HOME="<%= @m2_home %>"
+export M2="<%= @m2 %>"
+export MAVEN_OPTS="<%= @maven_opts %>"
+export PATH="<%= @path %>"

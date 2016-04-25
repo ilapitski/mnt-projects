@@ -1,0 +1,41 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure(2) do |config|
+
+#config.vm.provision "shell", inline: "echo Apache_server_install && yum update -y && yum install -y httpd && chkconfig httpd on && /etc/init.d/httpd start"
+
+$script = <<SCRIPT
+echo Provisioning...
+echo "192.168.33.30    chef-server" >> /etc/hosts
+SCRIPT
+
+config.vm.provision "shell", inline:$script  # provisioning
+
+config.vm.define :vm3 do |vm3|
+    vm3.vm.box = "sbeliakou/centos-6.7-x86_64"
+    vm3.vm.hostname = "chef-vm3"
+    vm3.vm.network "private_network", ip: "192.168.33.33"
+    vm3.vm.network "forwarded_port", guest: 80, host: 8181
+    #vm3.vm.synced_folder ".", "/vagrant", disabled: true
+    #vm3.vm.synced_folder "/root/vagrant/share", "/vagrant-vm-share", type: "rsync"
+        vm3.vm.provider "virtualbox" do |vb3|
+	     	vb3.name = "chef-vm3"
+		vb3.customize ["modifyvm", :id, "--memory", 2048]
+		#vb3.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+	end
+  end
+
+config.vm.define :vm4 do |vm4|
+    vm4.vm.box = "sbeliakou/centos-6.7-x86_64"
+    vm4.vm.hostname = "chef-vm4"
+    vm4.vm.network "private_network", ip: "192.168.33.34"
+    #vm4.vm.network "forwarded_port", guest: 80, host: 8181
+    #vm4.vm.synced_folder ".", "/vagrant", disabled: true
+    #vm4.vm.synced_folder "/root/vagrant/share2", "/vagrant-vm-share", owner: "root", group: "root"
+    	vm4.vm.provider "virtualbox" do |vb4|
+		vb4.name = "chef-vm4"
+		vb4.customize ["modifyvm", :id, "--memory", 2048]
+		#vb4.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+        end
+   end
+end

@@ -1,0 +1,5 @@
+default['nginx']['http_port'] = '8080'
+default['nginx']['config_file_name'] = 'virtual'
+default['tomcat']['http_port'] = '8082'
+default['jenkins']['http_port'] = '8081'
+default['jenkins']['listen_address'] = '127.0.0.1'

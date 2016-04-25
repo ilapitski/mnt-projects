@@ -1,0 +1,63 @@
+[2016-04-21T08:17:22+01:00] INFO: Forking chef instance to converge...
+[2016-04-21T08:17:22+01:00] INFO: *** Chef 12.8.1 ***
+[2016-04-21T08:17:22+01:00] INFO: Chef-client pid: 3346
+[2016-04-21T08:17:27+01:00] INFO: Setting the run_list to ["recipe[jboss::default]"] from CLI options
+[2016-04-21T08:17:27+01:00] INFO: Run List is [recipe[jboss::default]]
+[2016-04-21T08:17:27+01:00] INFO: Run List expands to [jboss::default]
+[2016-04-21T08:17:27+01:00] INFO: Starting Chef Run for chef02
+[2016-04-21T08:17:27+01:00] INFO: Running start handlers
+[2016-04-21T08:17:27+01:00] INFO: Start handlers complete.
+[2016-04-21T08:17:27+01:00] INFO: Processing ruby_block[set-env-java-home] action run (java::set_java_home line 19)
+[2016-04-21T08:17:27+01:00] INFO: ruby_block[set-env-java-home] called
+[2016-04-21T08:17:27+01:00] INFO: Processing directory[/etc/profile.d] action create (java::set_java_home line 26)
+[2016-04-21T08:17:27+01:00] INFO: Processing file[/etc/profile.d/jdk.sh] action create (java::set_java_home line 30)
+[2016-04-21T08:17:27+01:00] INFO: file[/etc/profile.d/jdk.sh] created file /etc/profile.d/jdk.sh
+[2016-04-21T08:17:27+01:00] INFO: file[/etc/profile.d/jdk.sh] updated file contents /etc/profile.d/jdk.sh
+[2016-04-21T08:17:27+01:00] INFO: file[/etc/profile.d/jdk.sh] mode changed to 755
+[2016-04-21T08:17:27+01:00] INFO: Processing yum_package[tar] action install (java::oracle line 53)
+[2016-04-21T08:17:37+01:00] INFO: Processing java_ark[jdk] action install (java::oracle line 55)
+[2016-04-21T08:17:37+01:00] INFO: Adding jdk to /usr/lib/jvm/jdk1.6.0_45
+[2016-04-21T08:17:41+01:00] INFO: Processing java_alternatives[set-java-alternatives] action set (/home/vagrant/chef_cookbooks/java/providers/ark.rb line 218)
+[2016-04-21T08:17:48+01:00] INFO: Processing yum_package[unzip] action install (jboss::default line 16)
+[2016-04-21T08:17:48+01:00] INFO: yum_package[unzip] installing unzip-6.0-2.el6_6 from base repository
+[2016-04-21T08:17:52+01:00] INFO: yum_package[unzip] installed unzip at 6.0-2.el6_6
+[2016-04-21T08:17:52+01:00] INFO: Processing user[jboss] action create (jboss::default line 20)
+[2016-04-21T08:17:53+01:00] INFO: user[jboss] created
+[2016-04-21T08:17:53+01:00] INFO: Processing group[jboss] action create (jboss::default line 28)
+[2016-04-21T08:17:53+01:00] INFO: Processing remote_file[/tmp/jboss-5.1.0.GA.zip] action create (jboss::default line 32)
+[2016-04-21T08:17:53+01:00] INFO: Processing execute[extract_jboss_zipfile] action run (jboss::default line 41)
+[2016-04-21T08:17:54+01:00] INFO: execute[extract_jboss_zipfile] ran successfully
+[2016-04-21T08:17:54+01:00] INFO: Processing remote_file[/tmp/testweb.zip] action create (jboss::default line 47)
+[2016-04-21T08:17:54+01:00] INFO: remote_file[/tmp/testweb.zip] created file /tmp/testweb.zip
+[2016-04-21T08:17:54+01:00] INFO: remote_file[/tmp/testweb.zip] updated file contents /tmp/testweb.zip
+[2016-04-21T08:17:54+01:00] INFO: remote_file[/tmp/testweb.zip] owner changed to 497
+[2016-04-21T08:17:54+01:00] INFO: remote_file[/tmp/testweb.zip] group changed to 497
+[2016-04-21T08:17:54+01:00] INFO: remote_file[/tmp/testweb.zip] mode changed to 755
+[2016-04-21T08:17:54+01:00] INFO: Processing execute[extract_testweb_zipfile] action run (jboss::default line 56)
+[2016-04-21T08:17:55+01:00] INFO: execute[extract_testweb_zipfile] ran successfully
+[2016-04-21T08:17:55+01:00] INFO: Processing template[/opt/jboss-5.1.0.GA/bin/run.sh] action create (jboss::default line 63)
+[2016-04-21T08:17:55+01:00] INFO: template[/opt/jboss-5.1.0.GA/bin/run.sh] backed up to /var/chef/backup/opt/jboss-5.1.0.GA/bin/run.sh.chef-20160421081755.139196
+[2016-04-21T08:17:55+01:00] INFO: template[/opt/jboss-5.1.0.GA/bin/run.sh] updated file contents /opt/jboss-5.1.0.GA/bin/run.sh
+[2016-04-21T08:17:55+01:00] INFO: template[/opt/jboss-5.1.0.GA/bin/run.sh] owner changed to 497
+[2016-04-21T08:17:55+01:00] INFO: template[/opt/jboss-5.1.0.GA/bin/run.sh] group changed to 497
+[2016-04-21T08:17:55+01:00] INFO: Processing template[/etc/init.d/jboss] action create (jboss::default line 70)
+[2016-04-21T08:17:55+01:00] INFO: template[/etc/init.d/jboss] created file /etc/init.d/jboss
+[2016-04-21T08:17:55+01:00] INFO: template[/etc/init.d/jboss] updated file contents /etc/init.d/jboss
+[2016-04-21T08:17:55+01:00] INFO: template[/etc/init.d/jboss] owner changed to 0
+[2016-04-21T08:17:55+01:00] INFO: template[/etc/init.d/jboss] group changed to 0
+[2016-04-21T08:17:55+01:00] INFO: template[/etc/init.d/jboss] mode changed to 755
+[2016-04-21T08:17:55+01:00] INFO: Processing directory[/opt/jboss-5.1.0.GA/server/default/logs] action create (jboss::default line 83)
+[2016-04-21T08:17:55+01:00] INFO: directory[/opt/jboss-5.1.0.GA/server/default/logs] created directory /opt/jboss-5.1.0.GA/server/default/logs
+[2016-04-21T08:17:55+01:00] INFO: directory[/opt/jboss-5.1.0.GA/server/default/logs] owner changed to 497
+[2016-04-21T08:17:55+01:00] INFO: directory[/opt/jboss-5.1.0.GA/server/default/logs] group changed to 497
+[2016-04-21T08:17:55+01:00] INFO: directory[/opt/jboss-5.1.0.GA/server/default/logs] mode changed to 755
+[2016-04-21T08:17:55+01:00] INFO: Processing execute[jboss folder ownership] action run (jboss::default line 91)
+[2016-04-21T08:17:55+01:00] INFO: execute[jboss folder ownership] ran successfully
+[2016-04-21T08:17:55+01:00] INFO: Processing service[jboss] action enable (jboss::default line 96)
+[2016-04-21T08:17:55+01:00] INFO: service[jboss] enabled
+[2016-04-21T08:17:55+01:00] INFO: Processing service[jboss] action start (jboss::default line 96)
+[2016-04-21T08:17:56+01:00] INFO: service[jboss] started
+[2016-04-21T08:17:56+01:00] INFO: Chef Run complete in 28.861139882 seconds
+[2016-04-21T08:17:56+01:00] INFO: Skipping removal of unused files from the cache
+[2016-04-21T08:17:56+01:00] INFO: Running report handlers
+[2016-04-21T08:17:56+01:00] INFO: Report handlers complete
