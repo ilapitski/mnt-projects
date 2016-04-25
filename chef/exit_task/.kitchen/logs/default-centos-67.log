@@ -1,0 +1,78 @@
+I, [2016-04-25T15:34:20.868380 #5848]  INFO -- default-centos-67: -----> Verifying <default-centos-67>...
+I, [2016-04-25T15:34:20.869302 #5848]  INFO -- default-centos-67: Preparing files for transfer
+I, [2016-04-25T15:34:21.481802 #5848]  INFO -- default-centos-67: -----> Installing Busser (busser)
+I, [2016-04-25T15:34:24.781505 #5848]  INFO -- default-centos-67: Fetching: thor-0.19.0.gemFetching: thor-0.19.0.gem ( 18%)Fetching: thor-0.19.0.gem ( 35%)Fetching: thor-0.19.0.gem ( 53%)Fetching: thor-0.19.0.gem ( 71%)Fetching: thor-0.19.0.gem ( 89%)Fetching: thor-0.19.0.gem (100%)Fetching: thor-0.19.0.gem (100%)
+I, [2016-04-25T15:34:24.831392 #5848]  INFO -- default-centos-67: Successfully installed thor-0.19.0
+I, [2016-04-25T15:34:25.091823 #5848]  INFO -- default-centos-67: Fetching: busser-0.7.1.gemFetching: busser-0.7.1.gem ( 64%)Fetching: busser-0.7.1.gem (100%)Fetching: busser-0.7.1.gem (100%)
+I, [2016-04-25T15:34:25.113639 #5848]  INFO -- default-centos-67: Successfully installed busser-0.7.1
+I, [2016-04-25T15:34:25.113710 #5848]  INFO -- default-centos-67: 2 gems installed
+I, [2016-04-25T15:34:25.131888 #5848]  INFO -- default-centos-67: Installing Busser plugins: busser-serverspec
+I, [2016-04-25T15:34:29.405004 #5848]  INFO -- default-centos-67: Plugin serverspec installed (version 0.5.9)
+I, [2016-04-25T15:34:29.410169 #5848]  INFO -- default-centos-67: -----> Running postinstall for serverspec plugin
+I, [2016-04-25T15:34:31.481788 #5848]  INFO -- default-centos-67: Suite path directory /tmp/verifier/suites does not exist, skipping.
+I, [2016-04-25T15:34:31.484280 #5848]  INFO -- default-centos-67: Transferring files to <default-centos-67>
+I, [2016-04-25T15:34:31.841616 #5848]  INFO -- default-centos-67: -----> Running serverspec test suite
+I, [2016-04-25T15:34:31.841713 #5848]  INFO -- default-centos-67: -----> Installing Serverspec..
+I, [2016-04-25T15:34:40.761571 #5848]  INFO -- default-centos-67: Fetching: sfl-2.2.gemFetching: sfl-2.2.gem (100%)Fetching: sfl-2.2.gem (100%)
+I, [2016-04-25T15:34:41.290675 #5848]  INFO -- default-centos-67: Fetching: net-telnet-0.1.1.gemFetching: net-telnet-0.1.1.gem ( 93%)Fetching: net-telnet-0.1.1.gem (100%)Fetching: net-telnet-0.1.1.gem (100%)
+I, [2016-04-25T15:34:41.890109 #5848]  INFO -- default-centos-67: Fetching: net-ssh-3.1.1.gemFetching: net-ssh-3.1.1.gem (  9%)Fetching: net-ssh-3.1.1.gem ( 18%)Fetching: net-ssh-3.1.1.gem ( 27%)Fetching: net-ssh-3.1.1.gem ( 36%)Fetching: net-ssh-3.1.1.gem ( 44%)Fetching: net-ssh-3.1.1.gem ( 53%)Fetching: net-ssh-3.1.1.gem ( 62%)Fetching: net-ssh-3.1.1.gem ( 71%)Fetching: net-ssh-3.1.1.gem ( 80%)Fetching: net-ssh-3.1.1.gem ( 89%)Fetching: net-ssh-3.1.1.gem ( 98%)Fetching: net-ssh-3.1.1.gem (100%)Fetching: net-ssh-3.1.1.gem (100%)
+I, [2016-04-25T15:34:42.672939 #5848]  INFO -- default-centos-67: Fetching: net-scp-1.2.1.gemFetching: net-scp-1.2.1.gem ( 48%)Fetching: net-scp-1.2.1.gem ( 98%)Fetching: net-scp-1.2.1.gem (100%)Fetching: net-scp-1.2.1.gem (100%)
+I, [2016-04-25T15:34:43.210311 #5848]  INFO -- default-centos-67: Fetching: specinfra-2.57.0.gemFetching: specinfra-2.57.0.gem ( 21%)Fetching: specinfra-2.57.0.gem ( 43%)Fetching: specinfra-2.57.0.gem ( 64%)Fetching: specinfra-2.57.0.gem ( 85%)Fetching: specinfra-2.57.0.gem (100%)Fetching: specinfra-2.57.0.gem (100%)
+I, [2016-04-25T15:34:43.856543 #5848]  INFO -- default-centos-67: Fetching: rspec-support-3.4.1.gemFetching: rspec-support-3.4.1.gem ( 50%)Fetching: rspec-support-3.4.1.gem (100%)Fetching: rspec-support-3.4.1.gem (100%)
+I, [2016-04-25T15:34:44.403050 #5848]  INFO -- default-centos-67: Fetching: diff-lcs-1.2.5.gemFetching: diff-lcs-1.2.5.gem ( 33%)Fetching: diff-lcs-1.2.5.gem ( 66%)Fetching: diff-lcs-1.2.5.gem ( 99%)Fetching: diff-lcs-1.2.5.gem (100%)Fetching: diff-lcs-1.2.5.gem (100%)
+I, [2016-04-25T15:34:44.958440 #5848]  INFO -- default-centos-67: Fetching: rspec-expectations-3.4.0.gemFetching: rspec-expectations-3.4.0.gem ( 21%)Fetching: rspec-expectations-3.4.0.gem ( 43%)Fetching: rspec-expectations-3.4.0.gem ( 65%)Fetching: rspec-expectations-3.4.0.gem ( 87%)Fetching: rspec-expectations-3.4.0.gem (100%)Fetching: rspec-expectations-3.4.0.gem (100%)
+I, [2016-04-25T15:34:45.704606 #5848]  INFO -- default-centos-67: Fetching: rspec-core-3.4.4.gemFetching: rspec-core-3.4.4.gem ( 11%)Fetching: rspec-core-3.4.4.gem ( 22%)Fetching: rspec-core-3.4.4.gem ( 34%)Fetching: rspec-core-3.4.4.gem ( 45%)Fetching: rspec-core-3.4.4.gem ( 56%)Fetching: rspec-core-3.4.4.gem ( 67%)Fetching: rspec-core-3.4.4.gem ( 79%)Fetching: rspec-core-3.4.4.gem ( 90%)Fetching: rspec-core-3.4.4.gem (100%)Fetching: rspec-core-3.4.4.gem (100%)
+I, [2016-04-25T15:34:46.272009 #5848]  INFO -- default-centos-67: Fetching: rspec-its-1.2.0.gemFetching: rspec-its-1.2.0.gem (100%)Fetching: rspec-its-1.2.0.gem (100%)
+I, [2016-04-25T15:34:46.814271 #5848]  INFO -- default-centos-67: Fetching: rspec-mocks-3.4.1.gemFetching: rspec-mocks-3.4.1.gem ( 21%)Fetching: rspec-mocks-3.4.1.gem ( 43%)Fetching: rspec-mocks-3.4.1.gem ( 65%)Fetching: rspec-mocks-3.4.1.gem ( 87%)Fetching: rspec-mocks-3.4.1.gem (100%)Fetching: rspec-mocks-3.4.1.gem (100%)
+I, [2016-04-25T15:34:47.361551 #5848]  INFO -- default-centos-67: Fetching: rspec-3.4.0.gemFetching: rspec-3.4.0.gem (100%)Fetching: rspec-3.4.0.gem (100%)
+I, [2016-04-25T15:34:47.921798 #5848]  INFO -- default-centos-67: Fetching: multi_json-1.11.3.gemFetching: multi_json-1.11.3.gem ( 63%)Fetching: multi_json-1.11.3.gem (100%)Fetching: multi_json-1.11.3.gem (100%)
+I, [2016-04-25T15:34:48.200219 #5848]  INFO -- default-centos-67: Fetching: serverspec-2.32.0.gemFetching: serverspec-2.32.0.gem ( 42%)Fetching: serverspec-2.32.0.gem ( 85%)Fetching: serverspec-2.32.0.gem (100%)Fetching: serverspec-2.32.0.gem (100%)
+I, [2016-04-25T15:34:48.271882 #5848]  INFO -- default-centos-67: -----> serverspec installed (version 2.32.0)
+I, [2016-04-25T15:34:48.351886 #5848]  INFO -- default-centos-67: /opt/chef/embedded/bin/ruby -I/tmp/verifier/suites/serverspec -I/tmp/verifier/gems/gems/rspec-support-3.4.1/lib:/tmp/verifier/gems/gems/rspec-core-3.4.4/lib /opt/chef/embedded/bin/rspec --pattern /tmp/verifier/suites/serverspec/\*\*/\*_spec.rb --color --format documentation --default-path /tmp/verifier/suites/serverspec
+I, [2016-04-25T15:34:48.680792 #5848]  INFO -- default-centos-67: 
+I, [2016-04-25T15:34:48.680869 #5848]  INFO -- default-centos-67: packages are installed
+I, [2016-04-25T15:34:48.868708 #5848]  INFO -- default-centos-67: [32m  nginx, java, git and jenkins are installed[0m
+I, [2016-04-25T15:34:48.868787 #5848]  INFO -- default-centos-67: 
+I, [2016-04-25T15:34:48.868812 #5848]  INFO -- default-centos-67: services are running
+I, [2016-04-25T15:34:49.051307 #5848]  INFO -- default-centos-67: [32m  nginx,tomcat and jenkins services[0m
+I, [2016-04-25T15:34:49.051384 #5848]  INFO -- default-centos-67: 
+I, [2016-04-25T15:34:49.051408 #5848]  INFO -- default-centos-67: ports are listened
+I, [2016-04-25T15:34:49.081365 #5848]  INFO -- default-centos-67: [32m  nginx, jenkins and tomcat ports[0m
+I, [2016-04-25T15:34:49.081447 #5848]  INFO -- default-centos-67: 
+I, [2016-04-25T15:34:49.081472 #5848]  INFO -- default-centos-67: Command "ls /opt/apache-tomcat-7.0.69"
+I, [2016-04-25T15:34:49.081494 #5848]  INFO -- default-centos-67:   stdout
+I, [2016-04-25T15:34:49.089952 #5848]  INFO -- default-centos-67: [32m    should match /conf/[0m
+I, [2016-04-25T15:34:49.090028 #5848]  INFO -- default-centos-67:   stdout
+I, [2016-04-25T15:34:49.090052 #5848]  INFO -- default-centos-67: [32m    should match /bin/[0m
+I, [2016-04-25T15:34:49.090072 #5848]  INFO -- default-centos-67:   stdout
+I, [2016-04-25T15:34:49.090109 #5848]  INFO -- default-centos-67: [32m    should match /webapps/[0m
+I, [2016-04-25T15:34:49.091729 #5848]  INFO -- default-centos-67: 
+I, [2016-04-25T15:34:49.091769 #5848]  INFO -- default-centos-67: File "/opt/apache-tomcat-7.0.69"
+I, [2016-04-25T15:34:49.100986 #5848]  INFO -- default-centos-67: [32m  should be directory[0m
+I, [2016-04-25T15:34:49.112096 #5848]  INFO -- default-centos-67: [32m  should be owned by "tomcat"[0m
+I, [2016-04-25T15:34:49.112210 #5848]  INFO -- default-centos-67: [32m  should be writable[0m
+I, [2016-04-25T15:34:49.112235 #5848]  INFO -- default-centos-67: 
+I, [2016-04-25T15:34:49.112256 #5848]  INFO -- default-centos-67: Command "ls /var/lib/jenkins/jobs"
+I, [2016-04-25T15:34:49.112276 #5848]  INFO -- default-centos-67:   stdout
+I, [2016-04-25T15:34:49.121970 #5848]  INFO -- default-centos-67: [32m    should match /deploy/[0m
+I, [2016-04-25T15:34:49.122041 #5848]  INFO -- default-centos-67:   stdout
+I, [2016-04-25T15:34:49.122064 #5848]  INFO -- default-centos-67: [32m    should match /build/[0m
+I, [2016-04-25T15:34:49.122085 #5848]  INFO -- default-centos-67: 
+I, [2016-04-25T15:34:49.122117 #5848]  INFO -- default-centos-67: File "/etc/init.d/tomcat"
+I, [2016-04-25T15:34:49.131943 #5848]  INFO -- default-centos-67: [32m  should exist[0m
+I, [2016-04-25T15:34:49.132012 #5848]  INFO -- default-centos-67: 
+I, [2016-04-25T15:34:49.132036 #5848]  INFO -- default-centos-67: File "/etc/init.d/jenkins"
+I, [2016-04-25T15:34:49.132056 #5848]  INFO -- default-centos-67: [32m  should exist[0m
+I, [2016-04-25T15:34:49.132075 #5848]  INFO -- default-centos-67: 
+I, [2016-04-25T15:34:49.132095 #5848]  INFO -- default-centos-67: File "/etc/sysconfig/jenkins"
+I, [2016-04-25T15:34:49.135303 #5848]  INFO -- default-centos-67: [32m  should exist[0m
+I, [2016-04-25T15:34:49.135353 #5848]  INFO -- default-centos-67: 
+I, [2016-04-25T15:34:49.135376 #5848]  INFO -- default-centos-67: File "/var/lib/jenkins"
+I, [2016-04-25T15:34:49.142001 #5848]  INFO -- default-centos-67: [32m  should be directory[0m
+I, [2016-04-25T15:34:49.151960 #5848]  INFO -- default-centos-67: [32m  should be owned by "jenkins"[0m
+I, [2016-04-25T15:34:49.152037 #5848]  INFO -- default-centos-67: [32m  should be writable[0m
+I, [2016-04-25T15:34:49.152061 #5848]  INFO -- default-centos-67: 
+I, [2016-04-25T15:34:49.152082 #5848]  INFO -- default-centos-67: Finished in 0.47115 seconds (files took 0.30393 seconds to load)
+I, [2016-04-25T15:34:49.152103 #5848]  INFO -- default-centos-67: [32m17 examples, 0 failures[0m
+I, [2016-04-25T15:34:49.152123 #5848]  INFO -- default-centos-67: 
+I, [2016-04-25T15:34:49.208542 #5848]  INFO -- default-centos-67: Finished verifying <default-centos-67> (0m28.34s).

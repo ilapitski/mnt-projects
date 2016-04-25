@@ -1,0 +1,6 @@
+---
+hostname: 127.0.0.1
+port: '2200'
+username: vagrant
+ssh_key: "/home/super_user/tmp/task5_bare2/ivan-lap-repo/.kitchen/kitchen-vagrant/kitchen-ivan-lap-repo-default-centos-67/.vagrant/machines/default/virtualbox/private_key"
+last_action: verify

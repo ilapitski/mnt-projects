@@ -1,0 +1,27 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: centos-6.7
+
+suites:
+  - name: default
+    run_list:
+      - recipe[nginx::prepare]
+      - recipe[java]
+      - recipe[tomcat::install]
+      - recipe[jenkins::install]
+    attributes:
+      {
+      "java": {
+               "install_flavor": "oracle",
+               "jdk_version": "7",
+               "oracle": {
+               "accept_oracle_download_terms": true
+                         }
+              }
+      }
