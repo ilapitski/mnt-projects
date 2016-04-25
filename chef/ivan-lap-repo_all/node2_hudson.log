@@ -1,0 +1,242 @@
+192.168.33.32 -----> Installing Chef Omnibus (-v 12)
+192.168.33.32 downloading https://omnitruck-direct.chef.io/chef/install.sh
+192.168.33.32   to file /tmp/install.sh.3304/install.sh
+192.168.33.32 trying wget...
+192.168.33.32 el 6 x86_64
+192.168.33.32 Getting information for chef stable 12 for el...
+192.168.33.32 downloading https://omnitruck-direct.chef.io/stable/chef/metadata?v=12&p=el&pv=6&m=x86_64
+192.168.33.32   to file /tmp/install.sh.3309/metadata.txt
+192.168.33.32 trying wget...
+192.168.33.32 sha1	2b859af3d6e99502b7a1d75671a4f629a224e9ad
+192.168.33.32 sha256	0aca8e46ff8ada7af09b0d65b6f7738eb7b25d269482000be1dee7aaba154011
+192.168.33.32 url	https://packages.chef.io/stable/el/6/chef-12.9.38-1.el6.x86_64.rpm
+192.168.33.32 version	12.9.38
+192.168.33.32 downloaded metadata file looks valid...
+192.168.33.32 downloading https://packages.chef.io/stable/el/6/chef-12.9.38-1.el6.x86_64.rpm
+192.168.33.32   to file /tmp/install.sh.3309/chef-12.9.38-1.el6.x86_64.rpm
+192.168.33.32 trying wget...
+192.168.33.32 Comparing checksum with sha256sum...
+192.168.33.32 Installing chef 12
+192.168.33.32 installing with rpm...
+192.168.33.32 warning: /tmp/install.sh.3309/chef-12.9.38-1.el6.x86_64.rpm: Header V4 DSA/SHA1 Signature, key ID 83ef826a: NOKEY
+192.168.33.32 Preparing...                                                            (100%)#                                           (100%)##                                          (100%)###                                         (100%)####                                        (100%)#####                                       (100%)######                                      (100%)#######                                     (100%)########                                    (100%)#########                                   (100%)##########                                  (100%)###########                                 (100%)############                                (100%)#############                               (100%)##############                              (100%)###############                             (100%)################                            (100%)#################                           (100%)##################                          (100%)###################                         (100%)####################                        (100%)#####################                       (100%)######################                      (100%)#######################                     (100%)########################                    (100%)#########################                   (100%)##########################                  (100%)###########################                 (100%)############################                (100%)#############################               (100%)##############################              (100%)###############################             (100%)################################            (100%)#################################           (100%)##################################          (100%)###################################         (100%)####################################        (100%)#####################################       (100%)######################################      (100%)#######################################     (100%)########################################    (100%)#########################################   (100%)##########################################  (100%)########################################### (100%)########################################### [100%]
+192.168.33.32    1:chef                                                               (  1%)#                                           (  3%)##                                          (  6%)###                                         (  8%)####                                        ( 10%)#####                                       ( 13%)######                                      ( 15%)#######                                     ( 17%)########                                    ( 19%)#########                                   ( 22%)##########                                  ( 24%)###########                                 ( 26%)############                                ( 28%)#############                               ( 31%)##############                              ( 33%)###############                             ( 35%)################                            ( 38%)#################                           ( 40%)##################                          ( 42%)###################                         ( 44%)####################                        ( 47%)#####################                       ( 49%)######################                      ( 51%)#######################                     ( 53%)########################                    ( 56%)#########################                   ( 58%)##########################                  ( 60%)###########################                 ( 63%)############################                ( 65%)#############################               ( 67%)##############################              ( 69%)###############################             ( 72%)################################            ( 74%)#################################           ( 76%)##################################          ( 78%)###################################         ( 81%)####################################        ( 83%)#####################################       ( 85%)######################################      ( 88%)#######################################     ( 90%)########################################    ( 92%)#########################################   ( 94%)##########################################  ( 97%)########################################### ( 99%)########################################### [100%]
+192.168.33.32 Thank you for installing Chef!
+192.168.33.32 Starting the first Chef Client run...
+192.168.33.32 Starting Chef Client, version 12.9.38[0m
+192.168.33.32 Creating a new client identity for node2 using the validator key.[0m
+192.168.33.32 resolving cookbooks for run list: ["jboss"][0m
+192.168.33.32 Synchronizing Cookbooks:[0m
+192.168.33.32   - jboss (0.1.2)[0m
+192.168.33.32   - java (1.39.0)[0m
+192.168.33.32   - apt (3.0.0)[0m
+192.168.33.32 Installing Cookbook Gems:[0m
+192.168.33.32 Compiling Cookbooks...[0m
+192.168.33.32 [2016-04-20T23:38:56+01:00] WARN: Chef::Provider::AptRepository already exists!  Cannot create deprecation class for LWRP provider apt_repository from cookbook apt
+192.168.33.32 [2016-04-20T23:38:56+01:00] WARN: AptRepository already exists!  Deprecation class overwrites Custom resource apt_repository from cookbook apt
+192.168.33.32 Converging 18 resources[0m
+192.168.33.32 Recipe: java::set_java_home[0m
+192.168.33.32   * ruby_block[set-env-java-home] action run
+192.168.33.32     [32m- execute the ruby block set-env-java-home[0m
+192.168.33.32 [0m  * directory[/etc/profile.d] action create (up to date)
+192.168.33.32   * file[/etc/profile.d/jdk.sh] action create
+192.168.33.32     [32m- create new file /etc/profile.d/jdk.sh[0m
+192.168.33.32     [32m- update content in file /etc/profile.d/jdk.sh from none to 26187d[0m
+192.168.33.32     [37m--- /etc/profile.d/jdk.sh	2016-04-20 23:38:56.231018001 +0100[0m
+192.168.33.32     [37m+++ /etc/profile.d/.chef-jdk.sh20160420-3380-k6fjst	2016-04-20 23:38:56.231018001 +0100[0m
+192.168.33.32     [37m@@ -1 +1,2 @@[0m
+192.168.33.32     [37m+export JAVA_HOME=/usr/lib/jvm/java[0m
+192.168.33.32     [32m- change mode from '' to '0755'[0m
+192.168.33.32 [0mRecipe: java::oracle[0m
+192.168.33.32   * yum_package[tar] action install (up to date)
+192.168.33.32   * java_ark[jdk] action install
+192.168.33.32     [32m- create dir /usr/lib/jvm and change owner to root:root[0m
+192.168.33.32     * yum_package[curl] action install (up to date)
+192.168.33.32     [32m- download oracle tarball straight from the server[0m
+192.168.33.32     [32m- extract compressed data into Chef file cache path and
+192.168.33.32 [0m    [32m                    move extracted data to /usr/lib/jvm/jdk1.6.0_45[0m
+192.168.33.32     [32m- Symlink /usr/lib/jvm/jdk1.6.0_45 to /usr/lib/jvm/java[0m
+192.168.33.32 [0m  * yum_package[curl] action nothing (skipped due to action :nothing)
+192.168.33.32   * java_alternatives[set-java-alternatives] action set
+192.168.33.32     [32m- Add alternative for appletviewer[0m
+192.168.33.32     [32m- Add alternative for apt[0m
+192.168.33.32     [32m- Add alternative for ControlPanel[0m
+192.168.33.32     [32m- Add alternative for extcheck[0m
+192.168.33.32     [32m- Add alternative for HtmlConverter[0m
+192.168.33.32     [32m- Add alternative for idlj[0m
+192.168.33.32     [32m- Add alternative for jar[0m
+192.168.33.32     [32m- Add alternative for jarsigner[0m
+192.168.33.32     [32m- Add alternative for java[0m
+192.168.33.32     [32m- Add alternative for javac[0m
+192.168.33.32     [32m- Add alternative for javadoc[0m
+192.168.33.32     [32m- Add alternative for javah[0m
+192.168.33.32     [32m- Add alternative for javap[0m
+192.168.33.32     [32m- Add alternative for javaws[0m
+192.168.33.32     [32m- Add alternative for jconsole[0m
+192.168.33.32     [32m- Add alternative for jcontrol[0m
+192.168.33.32     [32m- Add alternative for jdb[0m
+192.168.33.32     [32m- Add alternative for jhat[0m
+192.168.33.32     [32m- Add alternative for jinfo[0m
+192.168.33.32     [32m- Add alternative for jmap[0m
+192.168.33.32     [32m- Add alternative for jps[0m
+192.168.33.32     [32m- Add alternative for jrunscript[0m
+192.168.33.32     [32m- Add alternative for jsadebugd[0m
+192.168.33.32     [32m- Add alternative for jstack[0m
+192.168.33.32     [32m- Add alternative for jstat[0m
+192.168.33.32     [32m- Add alternative for jstatd[0m
+192.168.33.32     [32m- Add alternative for jvisualvm[0m
+192.168.33.32     [32m- Add alternative for keytool[0m
+192.168.33.32     [32m- Add alternative for native2ascii[0m
+192.168.33.32     [32m- Add alternative for orbd[0m
+192.168.33.32     [32m- Add alternative for pack200[0m
+192.168.33.32     [32m- Add alternative for policytool[0m
+192.168.33.32     [32m- Add alternative for rmic[0m
+192.168.33.32     [32m- Add alternative for rmid[0m
+192.168.33.32     [32m- Add alternative for rmiregistry[0m
+192.168.33.32     [32m- Add alternative for schemagen[0m
+192.168.33.32     [32m- Add alternative for serialver[0m
+192.168.33.32     [32m- Add alternative for servertool[0m
+192.168.33.32     [32m- Add alternative for tnameserv[0m
+192.168.33.32     [32m- Add alternative for unpack200[0m
+192.168.33.32     [32m- Add alternative for wsgen[0m
+192.168.33.32     [32m- Add alternative for wsimport[0m
+192.168.33.32     [32m- Add alternative for xjc[0m
+192.168.33.32 [0mRecipe: jboss::default[0m
+192.168.33.32   * yum_package[unzip] action install
+192.168.33.32     [32m- install version 6.0-2.el6_6 of package unzip[0m
+192.168.33.32 [0m  * user[jboss] action create
+192.168.33.32     [32m- create user jboss[0m
+192.168.33.32 [0m  * group[jboss] action create (up to date)
+192.168.33.32   * remote_file[/tmp/jboss-5.1.0.GA.zip] action create
+192.168.33.32     [32m- create new file /tmp/jboss-5.1.0.GA.zip[0m
+192.168.33.32     [32m- update content in file /tmp/jboss-5.1.0.GA.zip from none to be93bc[0m
+192.168.33.32     [37m(file sizes exceed 10000000 bytes, diff output suppressed)[0m
+192.168.33.32     [32m- change mode from '' to '0755'[0m
+192.168.33.32     [32m- change owner from '' to 'jboss'[0m
+192.168.33.32     [32m- change group from '' to 'jboss'[0m
+192.168.33.32 [0m  * execute[extract_jboss_zipfile] action run
+192.168.33.32     [32m- execute unzip jboss-5.1.0.GA.zip -d /opt[0m
+192.168.33.32 [0m  * remote_file[/tmp/hudson.zip] action create
+192.168.33.32     [32m- create new file /tmp/hudson.zip[0m
+192.168.33.32     [32m- update content in file /tmp/hudson.zip from none to b54a7a[0m
+192.168.33.32     [37m(file sizes exceed 10000000 bytes, diff output suppressed)[0m
+192.168.33.32     [32m- change mode from '' to '0755'[0m
+192.168.33.32     [32m- change owner from '' to 'jboss'[0m
+192.168.33.32     [32m- change group from '' to 'jboss'[0m
+192.168.33.32 [0m  * execute[extract_hudson.zip] action run
+192.168.33.32     [32m- execute unzip hudson.zip -d /opt/jboss-5.1.0.GA/server/default/deploy[0m
+192.168.33.32 [0m  * template[/opt/jboss-5.1.0.GA/server/default/deploy/hudson/hudson.xml] action create
+192.168.33.32     [32m- update content in file /opt/jboss-5.1.0.GA/server/default/deploy/hudson/hudson.xml from 0bed72 to 7d17ce[0m
+192.168.33.32     [37m--- /opt/jboss-5.1.0.GA/server/default/deploy/hudson/hudson.xml	2014-01-16 15:35:44.000000000 +0000[0m
+192.168.33.32     [37m+++ /opt/jboss-5.1.0.GA/server/default/deploy/hudson/.chef-hudson.xml20160420-3380-zpc9sh	2016-04-20 23:40:28.662018000 +0100[0m
+192.168.33.32     [37m@@ -1,6 +1,6 @@[0m
+192.168.33.32     [37m <?xml version="1.0" encoding="UTF-8"?>[0m
+192.168.33.32     [37m <cumulogic-app>[0m
+192.168.33.32     [37m-<single-vm>false</single-vm>[0m
+192.168.33.32     [37m+  <single-vm>false</single-vm>[0m
+192.168.33.32     [37m <application>[0m
+192.168.33.32     [37m   <application-context>hudson</application-context>[0m
+192.168.33.32     [37m   <jndi-name></jndi-name>[0m
+192.168.33.32     [37m@@ -12,13 +12,10 @@[0m
+192.168.33.32     [37m  <services>[0m
+192.168.33.32     [37m     <framework>[0m
+192.168.33.32     [37m       <type>Java EE</type>[0m
+192.168.33.32     [37m-       <engine>Tomcat-7.0.12</engine>[0m
+192.168.33.32     [37m+      <engine>JBoss-5.1.0.GA</engine>[0m
+192.168.33.32     [37m       <no-of-nodes>1</no-of-nodes>[0m
+192.168.33.32     [37m       <max-nodes>2</max-nodes>[0m
+192.168.33.32     [37m-    </framework>[0m
+192.168.33.32     [37m-    <elastic-load-balancer>[0m
+192.168.33.32     [37m-      <engine>Nginx-1.2</engine>[0m
+192.168.33.32     [37m-    </elastic-load-balancer>[0m
+192.168.33.32     [37m+    </framework>    [0m
+192.168.33.32     [37m   </services>[0m
+192.168.33.32     [37m </cumulogic-app>[0m
+192.168.33.32     [32m- change mode from '0644' to '0755'[0m
+192.168.33.32     [32m- change owner from 'root' to 'jboss'[0m
+192.168.33.32     [32m- change group from 'root' to 'jboss'[0m
+192.168.33.32 [0m  * template[/opt/jboss-5.1.0.GA/bin/run.sh] action create
+192.168.33.32     [32m- update content in file /opt/jboss-5.1.0.GA/bin/run.sh from 8fd451 to ac7bee[0m
+192.168.33.32     [37m--- /opt/jboss-5.1.0.GA/bin/run.sh	2009-05-22 11:00:28.000000000 +0100[0m
+192.168.33.32     [37m+++ /opt/jboss-5.1.0.GA/bin/.chef-run.sh20160420-3380-1o6ms2k	2016-04-20 23:40:28.679018004 +0100[0m
+192.168.33.32     [37m@@ -7,6 +7,7 @@[0m
+192.168.33.32     [37m [0m
+192.168.33.32     [37m ### $Id: run.sh 88978 2009-05-16 18:18:45Z alex.loubyansky@jboss.com $ ###[0m
+192.168.33.32     [37m [0m
+192.168.33.32     [37m+export JAVA_HOME=/usr/lib/jvm/java[0m
+192.168.33.32     [37m DIRNAME=`dirname $0`[0m
+192.168.33.32     [37m PROGNAME=`basename $0`[0m
+192.168.33.32     [37m GREP="grep"[0m
+192.168.33.32     [32m- change owner from 'root' to 'jboss'[0m
+192.168.33.32     [32m- change group from 'root' to 'jboss'[0m
+192.168.33.32 [0m  * template[/etc/init.d/jboss] action create
+192.168.33.32     [32m- create new file /etc/init.d/jboss[0m
+192.168.33.32     [32m- update content in file /etc/init.d/jboss from none to 4366a2[0m
+192.168.33.32     [37m--- /etc/init.d/jboss	2016-04-20 23:40:28.689018001 +0100[0m
+192.168.33.32     [37m+++ /etc/init.d/.chef-jboss20160420-3380-24zcvc	2016-04-20 23:40:28.689018001 +0100[0m
+192.168.33.32     [37m@@ -1 +1,48 @@[0m
+192.168.33.32     [37m+#!/bin/bash[0m
+192.168.33.32     [37m+#jboss        Startup script for the JBoss Java Application Server[0m
+192.168.33.32     [37m+#[0m
+192.168.33.32     [37m+# chkconfig: - 85 15[0m
+192.168.33.32     [37m+# description: The JBoss Java Application Server [0m
+192.168.33.32     [37m+#[0m
+192.168.33.32     [37m+# processname: jboss[0m
+192.168.33.32     [37m+[0m
+192.168.33.32     [37m+JBOSS_HOME="/opt/jboss-5.1.0.GA"[0m
+192.168.33.32     [37m+[0m
+192.168.33.32     [37m+start()[0m
+192.168.33.32     [37m+{[0m
+192.168.33.32     [37m+echo "Starting jboss"[0m
+192.168.33.32     [37m+       su - jboss -c "nohup $JBOSS_HOME/bin/run.sh -b 192.168.33.32 > $JBOSS_HOME/server/default/logs/run.log 2>> $JBOSS_HOME/server/default/logs/error_start.log & "[0m
+192.168.33.32     [37m+#exit 0[0m
+192.168.33.32     [37m+}[0m
+192.168.33.32     [37m+[0m
+192.168.33.32     [37m+stop()[0m
+192.168.33.32     [37m+{[0m
+192.168.33.32     [37m+echo "Stopping jboss"[0m
+192.168.33.32     [37m+       su - jboss -c "nohup $JBOSS_HOME/bin/shutdown.sh -s jnp://192.168.33.32:1099 -S -u admin -p admin > $JBOSS_HOME/server/default/logs/shutdown.log 2>> $JBOSS_HOME/server/default/logs/error_stop.log & "[0m
+192.168.33.32     [37m+#exit 0[0m
+192.168.33.32     [37m+}[0m
+192.168.33.32     [37m+[0m
+192.168.33.32     [37m+restart()[0m
+192.168.33.32     [37m+{[0m
+192.168.33.32     [37m+stop[0m
+192.168.33.32     [37m+sleep 60[0m
+192.168.33.32     [37m+start[0m
+192.168.33.32     [37m+}[0m
+192.168.33.32     [37m+[0m
+192.168.33.32     [37m+case "$1" in[0m
+192.168.33.32     [37m+	start)[0m
+192.168.33.32     [37m+		start[0m
+192.168.33.32     [37m+;;[0m
+192.168.33.32     [37m+	stop)[0m
+192.168.33.32     [37m+		stop[0m
+192.168.33.32     [37m+;;[0m
+192.168.33.32     [37m+	restart)[0m
+192.168.33.32     [37m+		restart[0m
+192.168.33.32     [37m+;;[0m
+192.168.33.32     [37m+	*)[0m
+192.168.33.32     [37m+[0m
+192.168.33.32     [37m+echo "Usage: jboss {start|stop|restart}"[0m
+192.168.33.32     [37m+exit 1[0m
+192.168.33.32     [37m+esac[0m
+192.168.33.32     [37m+exit 0[0m
+192.168.33.32     [32m- change mode from '' to '0755'[0m
+192.168.33.32     [32m- change owner from '' to 'root'[0m
+192.168.33.32     [32m- change group from '' to 'root'[0m
+192.168.33.32 [0m  * directory[/opt/jboss-5.1.0.GA/server/default/logs] action create
+192.168.33.32     [32m- create new directory /opt/jboss-5.1.0.GA/server/default/logs[0m
+192.168.33.32     [32m- change mode from '' to '0755'[0m
+192.168.33.32     [32m- change owner from '' to 'jboss'[0m
+192.168.33.32     [32m- change group from '' to 'jboss'[0m
+192.168.33.32 [0m  * execute[jboss folder ownership] action run
+192.168.33.32     [32m- execute chown -R jboss:jboss /opt/jboss-5.1.0.GA[0m
+192.168.33.32 [0m  * service[jboss] action enable
+192.168.33.32     [32m- enable service service[jboss][0m
+192.168.33.32 [0m  * service[jboss] action start
+192.168.33.32     [32m- start service service[jboss][0m
+192.168.33.32 [0m[0m
+192.168.33.32 Running handlers:[0m
+192.168.33.32 Running handlers complete
+192.168.33.32 [0mChef Client finished, 17/22 resources updated in 01 minutes 38 seconds[0m

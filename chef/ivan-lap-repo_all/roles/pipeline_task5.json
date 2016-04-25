@@ -1,0 +1,9 @@
+{
+  "name": "pipeline_task5",
+  "run_list": [
+    "recipe[nginx::prepare]",
+    "recipe[java]",
+    "recipe[tomcat::install]",
+    "recipe[jenkins::install]"
+  ]
+}
