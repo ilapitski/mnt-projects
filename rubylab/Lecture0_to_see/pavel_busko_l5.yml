@@ -1,0 +1,9 @@
+debug: false
+output: pavel_busko_l5.log
+error: pavel_busko_l5_errors.log
+commands:
+  help : Help command provides you list of available commands
+  uptime: Uptime commands gives you current machine uptime
+  date: Date command shows current date/time
+  ping: Check if server is accessible
+  echo: Echo command echoes the first argument passed by command
